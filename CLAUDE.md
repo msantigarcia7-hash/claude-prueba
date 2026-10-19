@@ -40,7 +40,7 @@ Siempre en este orden:
 
 1. **Forma**: la ecuación tipo, en línea (`Forma: y' + p(x)y = f(x)`).
 2. **Cambio / método**: el cambio de variable o los pasos, en prosa breve o lista numerada.
-3. **Fórmula clave**: en caja solo si es imprescindible (ver abajo); si no, en bloque centrado.
+3. **Fórmula clave en caja** (ver abajo).
 4. **Nota**: condiciones de validez, casos excluidos, soluciones singulares.
 5. **Ejemplos resueltos**: enunciado, pasos intermedios esenciales y resultado final en fórmula destacada.
 
@@ -52,12 +52,11 @@ Siempre en este orden:
 
 ### Método de cajas y celdas para fórmulas (estilo ChatGPT)
 
-**Regla principal: no abusar de cajas ni celdas.** Se usan solo para las fórmulas importantes e imprescindibles; en caso de duda, no se usan. Por defecto, una fórmula va en bloque centrado sin caja.
-
-- **Caja** (solo fórmulas imprescindibles: la solución general de un método, el cambio de variable que lo define, el resultado central de un teorema): fórmula centrada dentro de una caja con borde fino gris (`1px #bfbfbf`), esquinas ligeramente redondeadas, **fondo blanco**, sin colores. Opcionalmente una etiqueta pequeña en gris arriba a la izquierda ("Solución general", "Cambio"). Como máximo una por subapartado, y muchos subapartados no la necesitan. Es la única excepción a "sin recuadros", y solo para fórmulas, nunca para tablas ni texto.
-- **Sin caja** (todo lo demás): pasos intermedios, desarrollos, resultados de ejemplos y fórmulas secundarias en bloque centrado (`\[ … \]`). Fórmulas cortas dentro del texto: en línea (`\( … \)`).
-- **Celdas (tablas de fórmulas)**: solo cuando de verdad ayuden a comparar varias fórmulas paralelas (p. ej. la tabla de factores integrantes o el formulario final). Si unas pocas fórmulas se leen bien en lista o en bloque, no hacer tabla. Columnas tipo `Tipo | Forma | Fórmula clave` o `Caso | Fórmula | Condición`.
+- **Fórmulas clave** (solución general, cambio de variable, resultado de un ejemplo importante) en **fórmula centrada dentro de una caja**: borde fino gris (`1px #bfbfbf`), esquinas ligeramente redondeadas, **fondo blanco**, sin colores. Opcionalmente una etiqueta pequeña en gris arriba a la izquierda ("Solución general", "Cambio"). Es la única excepción a "sin recuadros", y solo para fórmulas, nunca para tablas ni texto.
+- Fórmulas secundarias y pasos intermedios: en bloque centrado (`\[ … \]`) sin caja. Fórmulas cortas dentro del texto: en línea (`\( … \)`).
+- **Celdas**: cuando haya varias fórmulas comparables (formulario, factores integrantes, casos), usar tabla con el estilo de arriba, una fórmula por celda, columnas tipo `Tipo | Forma | Método / fórmula clave` o `Caso | Fórmula | Condición`.
 - Una caja no debe partirse entre páginas (`break-inside: avoid`) y las fórmulas no deben saltar de línea (`white-space: nowrap`).
+- No abusar de las cajas: como mucho una o dos por subapartado, para que destaquen.
 
 ### Generación técnica del PDF
 
