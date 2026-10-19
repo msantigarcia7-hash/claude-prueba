@@ -36,7 +36,7 @@
   .katex-display { margin: 4pt 0; overflow-x: auto; overflow-y: hidden; }
   .katex { white-space: nowrap; }
 
-  /* Tablas: solo líneas horizontales finas */
+  /* Tablas (usar poco): solo líneas horizontales finas */
   table { width: 100%; border-collapse: collapse; margin: 8pt 0 12pt; break-inside: auto; }
   th, td { text-align: left; vertical-align: middle; padding: 7pt 8pt; border: none;
            border-bottom: 1px solid var(--linea); }
@@ -85,13 +85,10 @@
 </div>
 
 <h2>3. Formulario</h2>
-<table>
-  <thead><tr><th>Tipo</th><th>Forma</th><th>Método / fórmula clave</th></tr></thead>
-  <tbody>
-    <tr><td>Variables separadas</td><td>\(y' = g(x)\,h(y)\)</td><td>\(\displaystyle\int \frac{dy}{h(y)} = \int g(x)\,dx + C\)</td></tr>
-    <tr><td>Bernoulli</td><td>\(y' + p\,y = f\,y^n\)</td><td>\(z = y^{1-n}\)</td></tr>
-  </tbody>
-</table>
+<p><b>Variables separadas.</b> \(y' = g(x)\,h(y)\)</p>
+\[ \int \frac{dy}{h(y)} = \int g(x)\,dx + C \]
+<p><b>Bernoulli.</b> \(y' + p\,y = f\,y^n\), con \(n \neq 0, 1\)</p>
+\[ z = y^{1-n} \;\Rightarrow\; z' + (1-n)\,p\,z = (1-n)\,f \]
 
 </body>
 </html>
