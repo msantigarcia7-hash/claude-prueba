@@ -5,7 +5,7 @@
 
 ## Formato de tablas, PDFs y material de estudio
 
-Estilo **minimalista pero claro**, como las tablas de ChatGPT (las tablas se usan poco; ver "Método de cajas y celdas" más abajo):
+Estilo **minimalista pero claro**, como las tablas de ChatGPT:
 
 - Fondo blanco y texto negro. **Sin colores de relleno**: nada de cabeceras oscuras, celdas sombreadas ni filas alternas.
 - **Solo líneas horizontales finas** (gris claro) entre filas. Sin bordes verticales ni recuadros.
@@ -30,7 +30,7 @@ Todo temario, resumen o formulario que se pida se genera con esta estructura (to
    4. Cambios de variable / técnicas auxiliares.
    5. Aplicaciones (física, ingeniería) con su fórmula final.
    6. Ejercicios tipo y estrategias: pasos numerados por método.
-   7. Formulario completo: todas las fórmulas, agrupadas por apartado, **en lista** (nombre del tipo en negrita, su forma y debajo la fórmula en bloque), no en tabla.
+   7. Formulario completo: todas las fórmulas, agrupadas por apartado.
    8. Resumen de estrategias: lista de comprobación para identificar el tipo y elegir método (incluye imponer CI, intervalo de definición y soluciones singulares).
 3. Una frase final breve indicando qué cubre el documento.
 
@@ -52,11 +52,11 @@ Siempre en este orden:
 
 ### Método de cajas y celdas para fórmulas (estilo ChatGPT)
 
-**Regla principal: pocas cajas y pocas tablas.** Se usan solo para lo importante e imprescindible; en caso de duda, no se usan. Por defecto, una fórmula va en bloque centrado sin caja.
+**Regla principal: pocas cajas.** Se usan solo para las fórmulas importantes e imprescindibles; en caso de duda, no se usan. Por defecto, una fórmula va en bloque centrado sin caja.
 
 - **Caja** (solo fórmulas imprescindibles: la solución general de un método, la ecuación o condición que lo define, el resultado central de un teorema): fórmula centrada dentro de una caja con borde fino gris (`1px #bfbfbf`), esquinas ligeramente redondeadas, **fondo blanco**, sin colores, con una etiqueta pequeña en gris arriba a la izquierda ("Solución general", "Condición de exactitud"). Como máximo una por subapartado, y muchos subapartados no la necesitan. Es la única excepción a "sin recuadros", y solo para fórmulas, nunca para texto.
 - **Sin caja** (todo lo demás): cambios de variable, pasos intermedios, desarrollos, resultados de los ejemplos y fórmulas secundarias en bloque centrado (`\[ … \]`). Fórmulas cortas dentro del texto: en línea (`\( … \)`).
-- **Tablas (celdas)**: evitarlas siempre que se pueda. Solo cuando haya varios casos paralelos que de verdad se entienden mejor comparados en columnas (p. ej. la tabla de factores integrantes según la variable). El formulario, las listas de métodos, los pasos y los resúmenes van en listas o en bloques, no en tablas. Si se usa una tabla, con el estilo descrito arriba y columnas tipo `Caso | Fórmula | Condición`.
+- **Celdas**: cuando haya varias fórmulas comparables (formulario, factores integrantes, casos), usar tabla con el estilo de arriba, una fórmula por celda, columnas tipo `Tipo | Forma | Método / fórmula clave` o `Caso | Fórmula | Condición`.
 - Una caja no debe partirse entre páginas (`break-inside: avoid`) y las fórmulas no deben saltar de línea (`white-space: nowrap`).
 
 ### Generación técnica del PDF
