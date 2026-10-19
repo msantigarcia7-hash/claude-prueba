@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Título del tema</title>
+<!--
+  Plantilla base para temarios, resúmenes y formularios en PDF.
+  Se renderiza con Chromium (HTML + KaTeX) e imprime en A4.
+  Ver la sección "Estructura predeterminada de los documentos" de CLAUDE.md.
+-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters: [
+    {left: '\\[', right: '\\]', display: true},
+    {left: '\\(', right: '\\)', display: false}
+  ], throwOnError: false});"></script>
+<style>
+  @page { size: A4; margin: 20mm 18mm; }
+  :root { --linea: #d9d9d9; --linea-fuerte: #333; --texto: #111; --suave: #555; }
+  body { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 10.5pt;
+         line-height: 1.5; color: var(--texto); background: #fff; margin: 0; }
+
+  /* Títulos: negrita, sin colores ni mayúsculas forzadas */
+  h1 { font-size: 20pt; margin: 0 0 2pt; }
+  .subtitulo { color: var(--suave); margin: 0 0 18pt; }
+  h2 { font-size: 14pt; margin: 22pt 0 8pt; padding-bottom: 3pt; border-bottom: 1px solid var(--linea); }
+  h3 { font-size: 11.5pt; margin: 16pt 0 6pt; }
+  h2, h3 { break-after: avoid; }
+
+  /* Caja de fórmula (solo fórmulas imprescindibles): borde fino gris, fondo blanco */
+  .formula { border: 1px solid #bfbfbf; border-radius: 4px; padding: 8pt 12pt;
+             margin: 8pt 0 10pt; text-align: center; break-inside: avoid; }
+  .formula .etiqueta { display: block; text-align: left; font-size: 9pt;
+                       color: var(--suave); margin-bottom: 2pt; }
+  .katex-display { margin: 4pt 0; overflow-x: auto; overflow-y: hidden; }
+  .katex { white-space: nowrap; }
+
+  /* Tablas: solo líneas horizontales finas */
+  table { width: 100%; border-collapse: collapse; margin: 8pt 0 12pt; break-inside: auto; }
+  th, td { text-align: left; vertical-align: middle; padding: 7pt 8pt; border: none;
+           border-bottom: 1px solid var(--linea); }
+  th { font-weight: bold; border-bottom: 1.5px solid var(--linea-fuerte); }
+  tr { break-inside: avoid; }
+
+  /* Teoremas, ejemplos y notas: sin fondos, solo jerarquía tipográfica */
+  .teorema, .ejemplo { margin: 8pt 0 10pt; break-inside: avoid; }
+  .teorema > b:first-child, .ejemplo > b:first-child { display: block; margin-bottom: 2pt; }
+  .nota { font-size: 9.5pt; color: var(--suave); margin: 6pt 0; }
+  ol, ul { padding-left: 18pt; margin: 4pt 0 8pt; }
+  li { margin: 2pt 0; }
+</style>
+</head>
+<body>
+
+<h1>Tema N. Título del tema</h1>
+<p class="subtitulo">Asignatura · Grado · Universidad</p>
+
+<h2>1. Conceptos básicos</h2>
+
+<h3>1.1. Definición</h3>
+<p>Una <b>ecuación diferencial</b> es una ecuación que contiene una o más derivadas de una función desconocida.</p>
+
+<div class="teorema">
+  <b>Teorema 1.1 (Existencia)</b>
+  Si \(f\) es continua en un rectángulo \(R\) que contiene a \((x_0,y_0)\), entonces el PVI tiene solución local.
+</div>
+
+<h2>2. Métodos de resolución</h2>
+
+<h3>2.1. Ecuación lineal</h3>
+<p><b>Forma:</b> \(y' + p(x)\,y = f(x)\).</p>
+
+<div class="formula">
+  <span class="etiqueta">Solución general</span>
+  \[ y(x) = e^{-\int p\,dx}\left[\int f(x)\,e^{\int p\,dx}\,dx + C\right] \]
+</div>
+
+<p class="nota">Nota: válida en cualquier intervalo donde \(p\) y \(f\) sean continuas.</p>
+
+<div class="ejemplo">
+  <b>Ejemplo.</b>
+  \(y' - 2xy = 2x\). Aquí \(p(x) = -2x\), \(f(x) = 2x\).
+  \[ y = (x^2 + C)\,e^{x^2} \]
+</div>
+
+<h2>3. Formulario</h2>
+<table>
+  <thead><tr><th>Tipo</th><th>Forma</th><th>Método / fórmula clave</th></tr></thead>
+  <tbody>
+    <tr><td>Variables separadas</td><td>\(y' = g(x)\,h(y)\)</td><td>\(\displaystyle\int \frac{dy}{h(y)} = \int g(x)\,dx + C\)</td></tr>
+    <tr><td>Bernoulli</td><td>\(y' + p\,y = f\,y^n\)</td><td>\(z = y^{1-n}\)</td></tr>
+  </tbody>
+</table>
+
+</body>
+</html>
