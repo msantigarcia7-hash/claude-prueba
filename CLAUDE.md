@@ -56,7 +56,7 @@ Siempre en este orden:
 
 - **Caja** (solo fórmulas imprescindibles: la solución general de un método, la ecuación o condición que lo define, el resultado central de un teorema): fórmula centrada dentro de una caja con borde fino gris (`1px #bfbfbf`), esquinas ligeramente redondeadas, **fondo blanco**, sin colores, con una etiqueta pequeña en gris arriba a la izquierda ("Solución general", "Condición de exactitud"). Como máximo una por subapartado, y muchos subapartados no la necesitan. Es la única excepción a "sin recuadros", y solo para fórmulas, nunca para texto.
 - **Sin caja** (todo lo demás): cambios de variable, pasos intermedios, desarrollos, resultados de los ejemplos y fórmulas secundarias en bloque centrado (`\[ … \]`). Fórmulas cortas dentro del texto: en línea (`\( … \)`).
-- **Celdas**: cuando haya varias fórmulas comparables (formulario, factores integrantes, casos), usar tabla con el estilo de arriba, una fórmula por celda, columnas tipo `Tipo | Forma | Método / fórmula clave` o `Caso | Fórmula | Condición`.
+- **Celdas**: cuando haya varias fórmulas comparables (formulario, factores integrantes, casos), usar tabla con el estilo de arriba, una fórmula por celda, columnas tipo `Tipo | Forma | Método / fórmula clave` o `Caso | Fórmula | Condición`. Solo una pequeña reducción: si son apenas dos o tres fórmulas que se leen bien seguidas en bloque, no hace falta tabla.
 - Una caja no debe partirse entre páginas (`break-inside: avoid`) y las fórmulas no deben saltar de línea (`white-space: nowrap`).
 
 ### Generación técnica del PDF
