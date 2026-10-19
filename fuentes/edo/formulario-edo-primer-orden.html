@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>EDO de primer orden. Formulario</title>
+<!--KATEX-->
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<h1>Ecuaciones diferenciales de primer orden</h1>
+<p class="subtitulo">Formulario detallado de los métodos de resolución</p>
+
+<p><b>Contenido</b></p>
+<ol class="indice">
+  <li>Conceptos básicos y teorema de existencia y unicidad</li>
+  <li>Cómo reconocer el tipo de ecuación</li>
+  <li>Variables separables</li>
+  <li>Reducibles a separables: $y' = f(ax+by+c)$</li>
+  <li>Homogéneas</li>
+  <li>Reducibles a homogéneas</li>
+  <li>Exactas</li>
+  <li>Factor integrante</li>
+  <li>Lineales</li>
+  <li>Bernoulli</li>
+  <li>Riccati</li>
+  <li>No resueltas en $y'$: Clairaut y Lagrange</li>
+  <li>Aplicaciones típicas</li>
+  <li>Formulario rápido</li>
+</ol>
+
+<p class="peq">Notación: $y = y(x)$ es la función incógnita, $y' = \frac{\mathrm{d}y}{\mathrm{d}x}$; $M_y = \frac{\partial M}{\partial y}$, $N_x = \frac{\partial N}{\partial x}$; $C$ y $K$ son constantes arbitrarias. Todos los ejemplos están comprobados sustituyendo la solución en la ecuación.</p>
+
+<!-- ============================================================ -->
+<h2>1. Conceptos básicos</h2>
+
+<div class="def"><b>Ecuación diferencial ordinaria (EDO) de primer orden.</b> Es una ecuación que relaciona $x$, una función desconocida $y(x)$ y su primera derivada $y'$: $F(x,y,y') = 0$. Se puede escribir de dos formas equivalentes:
+$$\text{forma normal: } y' = f(x,y), \qquad\qquad \text{forma diferencial: } M(x,y)\dd x + N(x,y)\dd y = 0 .$$
+Se pasa de una a otra con $y' = \frac{\mathrm{d}y}{\mathrm{d}x} = -\frac{M}{N}$.</div>
+
+<table>
+<thead><tr><th>Concepto</th><th>Significado</th></tr></thead>
+<tbody>
+<tr><td>Solución general</td><td>familia de soluciones con una constante arbitraria $C$: $y = \varphi(x,C)$ o, en forma implícita, $\Phi(x,y) = C$</td></tr>
+<tr><td>Solución particular</td><td>la que se obtiene dando un valor concreto a $C$</td></tr>
+<tr><td>Solución singular</td><td>solución que no se obtiene de la general para ningún valor de $C$ (aparece al dividir por una expresión que puede anularse)</td></tr>
+<tr><td>Problema de valor inicial (PVI)</td><td>$y' = f(x,y)$ con la condición $y(x_0) = y_0$; la condición determina $C$</td></tr>
+</tbody>
+</table>
+
+<div class="def"><b>Teorema de existencia y unicidad (Picard).</b> Si $f(x,y)$ y $\frac{\partial f}{\partial y}$ son continuas en un rectángulo que contiene al punto $(x_0,y_0)$, entonces el problema $y' = f(x,y)$, $y(x_0) = y_0$ tiene <b>una única solución</b> definida en un intervalo alrededor de $x_0$. Si solo $f$ es continua, hay solución pero puede no ser única.</div>
+
+<!-- ============================================================ -->
+<h2>2. Cómo reconocer el tipo de ecuación</h2>
+<p><b>Antes de resolver, clasifica.</b> Comprueba en este orden (de lo más sencillo a lo más laborioso):</p>
+<table>
+<thead><tr><th>Orden</th><th>Pregunta</th><th>Si la respuesta es sí</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>¿Se puede escribir $y' = g(x)\,h(y)$?</td><td>Variables separables (§3)</td></tr>
+<tr><td>2</td><td>¿Es $y' = f(ax+by+c)$?</td><td>Cambio $z = ax+by+c$ (§4)</td></tr>
+<tr><td>3</td><td>¿Es lineal en $y$ e $y'$: $y' + P(x)\,y = Q(x)$?</td><td>Lineal (§9)</td></tr>
+<tr><td>4</td><td>¿Es $y' + P(x)\,y = Q(x)\,y^n$?</td><td>Bernoulli (§10)</td></tr>
+<tr><td>5</td><td>¿Es $f(\lambda x,\lambda y) = f(x,y)$?</td><td>Homogénea (§5)</td></tr>
+<tr><td>6</td><td>¿Es $y' = f\!\left(\frac{a_1x+b_1y+c_1}{a_2x+b_2y+c_2}\right)$?</td><td>Reducible a homogénea (§6)</td></tr>
+<tr><td>7</td><td>En forma $M\dd x + N\dd y = 0$, ¿es $M_y = N_x$?</td><td>Exacta (§7)</td></tr>
+<tr><td>8</td><td>¿No es exacta, pero $\frac{M_y-N_x}{N}$ solo depende de $x$ (o $\frac{N_x-M_y}{M}$ solo de $y$)?</td><td>Factor integrante (§8)</td></tr>
+<tr><td>9</td><td>¿Es $y' = P + Q\,y + R\,y^2$ y conozco una solución $y_1$?</td><td>Riccati (§11)</td></tr>
+<tr><td>10</td><td>¿No se puede despejar $y'$, y es $y = x\,\varphi(y') + \psi(y')$?</td><td>Clairaut o Lagrange (§12)</td></tr>
+</tbody>
+</table>
+<p class="peq">Una misma ecuación puede pertenecer a varios tipos (por ejemplo, $y' = xy$ es separable y también lineal). Elige el método más corto.</p>
+
+<!-- ============================================================ -->
+<h2>3. Variables separables</h2>
+<table>
+<thead><tr><th>Forma</th><th>Método</th><th>Solución</th></tr></thead>
+<tbody>
+<tr><td>$y' = g(x)\,h(y)$ &nbsp; o &nbsp; $M_1(x)N_1(y)\dd x + M_2(x)N_2(y)\dd y = 0$</td><td>separar: todo lo de $y$ con $\mathrm{d}y$, todo lo de $x$ con $\mathrm{d}x$</td><td>$\displaystyle\int\frac{\mathrm{d}y}{h(y)} = \int g(x)\dd x + C$</td></tr>
+</tbody>
+</table>
+<p><b>Pasos.</b> (1) Escribir $y' = \frac{\mathrm{d}y}{\mathrm{d}x}$. (2) Pasar $h(y)$ dividiendo y $\mathrm{d}x$ multiplicando. (3) Integrar cada lado (una sola constante). (4) Despejar $y$ si se puede.</p>
+<p><b>Cuidado con las soluciones perdidas.</b> Al dividir por $h(y)$ se supone $h(y)\neq 0$. Los valores $y = y_0$ con $h(y_0) = 0$ son soluciones constantes que hay que añadir si no están incluidas en la general.</p>
+<p><b>Caso particular, ecuación autónoma</b> $y' = h(y)$: es separable; sus soluciones constantes ($h(y_0) = 0$) se llaman puntos de equilibrio.</p>
+<div class="ej"><span class="t">Ejemplo. $y' = xy$, &nbsp; $y(0) = 2$</span>
+$$\frac{\mathrm{d}y}{y} = x\dd x \;\Rightarrow\; \ln|y| = \frac{x^2}{2} + C \;\Rightarrow\; y = K e^{x^2/2} \quad (K = \pm e^C;\ K = 0 \text{ recupera la solución } y = 0).$$
+<p>Con $y(0) = 2$: $K = 2$, luego $y = 2e^{x^2/2}$.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>4. Reducibles a separables: $y' = f(ax+by+c)$</h2>
+<table>
+<thead><tr><th>Forma</th><th>Cambio</th><th>Ecuación que resulta</th></tr></thead>
+<tbody>
+<tr><td>$y' = f(ax+by+c)$</td><td>$z = ax+by+c$, &nbsp; $z' = a + b\,y'$</td><td>$z' = a + b\,f(z)$ &nbsp; (separable): $\displaystyle\int\frac{\mathrm{d}z}{a+b\,f(z)} = x + C$</td></tr>
+</tbody>
+</table>
+<div class="ej"><span class="t">Ejemplo. $y' = (x+y)^2$</span>
+<p>$z = x+y$, $z' = 1 + y' = 1 + z^2$. Separando: $\int\frac{\mathrm{d}z}{1+z^2} = \int\mathrm{d}x \Rightarrow \arctg z = x + C \Rightarrow z = \tg(x+C)$.</p>
+$$y = \tg(x+C) - x .$$
+</div>
+
+<!-- ============================================================ -->
+<h2>5. Ecuaciones homogéneas</h2>
+<div class="def"><b>Función homogénea.</b> $g(x,y)$ es homogénea de grado $k$ si $g(\lambda x,\lambda y) = \lambda^k g(x,y)$ para todo $\lambda>0$. La EDO $y' = f(x,y)$ es <b>homogénea</b> si $f$ es homogénea de grado $0$, es decir, $f(\lambda x,\lambda y) = f(x,y)$; equivalentemente, en $M\dd x + N\dd y = 0$, si $M$ y $N$ son homogéneas del mismo grado. Entonces $f$ solo depende del cociente $\frac{y}{x}$.</div>
+<table>
+<thead><tr><th>Forma</th><th>Cambio</th><th>Ecuación que resulta</th></tr></thead>
+<tbody>
+<tr><td>$y' = f\!\left(\dfrac{y}{x}\right)$</td><td>$y = v\,x$, &nbsp; $y' = v + x\,v'$</td><td>$x\,v' = f(v) - v$ &nbsp; (separable): $\displaystyle\int\frac{\mathrm{d}v}{f(v)-v} = \ln|x| + C$</td></tr>
+</tbody>
+</table>
+<p>Al terminar se deshace el cambio con $v = \frac{y}{x}$. Las raíces de $f(v) = v$ dan soluciones rectas $y = v_0\,x$. (Si $\mathrm{d}x$ resulta más complicado, también vale el cambio $x = u\,y$.)</p>
+<div class="ej"><span class="t">Ejemplo. $y' = \dfrac{x^2+y^2}{xy}$</span>
+<p>Numerador y denominador son homogéneos de grado $2$. Con $y = vx$: $v + xv' = \frac{1+v^2}{v} = \frac{1}{v} + v$, luego $xv' = \frac{1}{v}$.</p>
+$$v\dd v = \frac{\mathrm{d}x}{x} \;\Rightarrow\; \frac{v^2}{2} = \ln|x| + C \;\Rightarrow\; y^2 = 2x^2\ln|x| + Cx^2 .$$
+</div>
+
+<!-- ============================================================ -->
+<h2>6. Reducibles a homogéneas</h2>
+<p><b>Forma:</b> $\displaystyle y' = f\!\left(\frac{a_1x+b_1y+c_1}{a_2x+b_2y+c_2}\right)$. Se mira si las rectas $a_1x+b_1y+c_1 = 0$ y $a_2x+b_2y+c_2 = 0$ se cortan o son paralelas:</p>
+<table>
+<thead><tr><th>Caso</th><th>Condición</th><th>Cambio</th><th>Resulta</th></tr></thead>
+<tbody>
+<tr><td>Rectas que se cortan en $(x_0,y_0)$</td><td>$\begin{vmatrix}a_1&b_1\\a_2&b_2\end{vmatrix}\neq 0$</td><td>$X = x - x_0$, &nbsp; $Y = y - y_0$</td><td>$Y' = f\!\left(\dfrac{a_1X+b_1Y}{a_2X+b_2Y}\right)$, homogénea</td></tr>
+<tr><td>Rectas paralelas</td><td>$\begin{vmatrix}a_1&b_1\\a_2&b_2\end{vmatrix} = 0$</td><td>$z = a_1x + b_1y$</td><td>separable en $z$</td></tr>
+<tr><td>$c_1 = c_2 = 0$</td><td>—</td><td>ninguno</td><td>ya es homogénea</td></tr>
+</tbody>
+</table>
+<div class="ej"><span class="t">Ejemplo 1 (se cortan). $y' = \dfrac{x+y-3}{x-y-1}$</span>
+<p>$x+y = 3$, $x-y = 1$ $\Rightarrow$ $(x_0,y_0) = (2,1)$. Con $X = x-2$, $Y = y-1$: $Y' = \frac{X+Y}{X-Y}$. Con $Y = vX$:</p>
+$$v + Xv' = \frac{1+v}{1-v} \;\Rightarrow\; Xv' = \frac{1+v^2}{1-v} \;\Rightarrow\; \int\frac{1-v}{1+v^2}\dd v = \int\frac{\mathrm{d}X}{X} \;\Rightarrow\; \arctg v - \frac{1}{2}\ln(1+v^2) = \ln|X| + C .$$
+<p>Deshaciendo los cambios ($v = \frac{y-1}{x-2}$):</p>
+$$\arctg\frac{y-1}{x-2} = \ln\sqrt{(x-2)^2+(y-1)^2} + C .$$
+</div>
+<div class="ej"><span class="t">Ejemplo 2 (paralelas). $y' = \dfrac{x+y+1}{2x+2y-1}$</span>
+<p>$\begin{vmatrix}1&1\\2&2\end{vmatrix} = 0$. Con $z = x+y$: $z' = 1 + \frac{z+1}{2z-1} = \frac{3z}{2z-1}$, separable:</p>
+$$\int\frac{2z-1}{3z}\dd z = \int\mathrm{d}x \;\Rightarrow\; \frac{2z}{3} - \frac{1}{3}\ln|z| = x + C \;\Rightarrow\; 2y - x - \ln|x+y| = C .$$
+</div>
+
+<!-- ============================================================ -->
+<h2>7. Ecuaciones exactas</h2>
+<div class="def"><b>Ecuación exacta.</b> $M(x,y)\dd x + N(x,y)\dd y = 0$ es exacta si existe una función $F(x,y)$ (función potencial) con $F_x = M$ y $F_y = N$; es decir, si el primer miembro es la diferencial total $\mathrm{d}F$. Entonces la solución es $F(x,y) = C$. En un dominio sin agujeros (por ejemplo un rectángulo), es exacta <b>si y solo si</b>
+$$\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x} .$$</div>
+<p><b>Cálculo de $F$.</b></p>
+<ol>
+<li>Integrar $M$ respecto de $x$ (con $y$ constante): $F(x,y) = \int M\dd x + \varphi(y)$.</li>
+<li>Derivar respecto de $y$ e igualar a $N$: $\frac{\partial}{\partial y}\int M\dd x + \varphi'(y) = N$. Despejar $\varphi'(y)$ (debe quedar solo función de $y$) e integrar.</li>
+<li>Solución: $F(x,y) = C$.</li>
+</ol>
+<p>(También se puede empezar integrando $N$ respecto de $y$ y añadir $\psi(x)$.)</p>
+<div class="ej"><span class="t">Ejemplo. $(2xy+3)\dd x + (x^2-1)\dd y = 0$</span>
+<p>$M_y = 2x = N_x$: exacta. $F = \int(2xy+3)\dd x = x^2y + 3x + \varphi(y)$. Derivando: $F_y = x^2 + \varphi'(y) = x^2 - 1 \Rightarrow \varphi'(y) = -1 \Rightarrow \varphi(y) = -y$.</p>
+$$x^2y + 3x - y = C .$$
+</div>
+
+<!-- ============================================================ -->
+<h2>8. Factor integrante</h2>
+<p><b>Si $M\dd x + N\dd y = 0$ no es exacta, se busca una función $\mu$ tal que $\mu M\dd x + \mu N\dd y = 0$ sí lo sea</b>, es decir, $(\mu M)_y = (\mu N)_x$. Después se resuelve como exacta. En general esta condición es una EDP, pero hay casos en que $\mu$ depende de una sola variable:</p>
+<table>
+<thead><tr><th>Factor</th><th>Condición (debe depender solo de esa variable)</th><th>Factor integrante</th></tr></thead>
+<tbody>
+<tr><td>$\mu(x)$</td><td>$\dfrac{M_y - N_x}{N} = h(x)$</td><td>$\mu(x) = e^{\int h(x)\dd x}$</td></tr>
+<tr><td>$\mu(y)$</td><td>$\dfrac{N_x - M_y}{M} = h(y)$</td><td>$\mu(y) = e^{\int h(y)\dd y}$</td></tr>
+<tr><td>$\mu(z)$, $z = z(x,y)$</td><td>$\dfrac{M_y - N_x}{N z_x - M z_y} = h(z)$</td><td>$\mu(z) = e^{\int h(z)\dd z}$</td></tr>
+<tr><td>$\mu(x+y)$</td><td>$\dfrac{M_y - N_x}{N - M} = h(x+y)$</td><td>$e^{\int h(z)\dd z}$, &nbsp; $z = x+y$</td></tr>
+<tr><td>$\mu(xy)$</td><td>$\dfrac{M_y - N_x}{yN - xM} = h(xy)$</td><td>$e^{\int h(z)\dd z}$, &nbsp; $z = xy$</td></tr>
+<tr><td>$\mu(x^2+y^2)$</td><td>$\dfrac{M_y - N_x}{2xN - 2yM} = h(x^2+y^2)$</td><td>$e^{\int h(z)\dd z}$, &nbsp; $z = x^2+y^2$</td></tr>
+</tbody>
+</table>
+<p class="peq">Todas salen de la fila general: imponiendo $(\mu M)_y = (\mu N)_x$ con $\mu = \mu(z)$ se obtiene $\frac{\mu'}{\mu} = \frac{M_y-N_x}{Nz_x - Mz_y}$. Al multiplicar por $\mu$ pueden ganarse o perderse soluciones donde $\mu = 0$ o no está definido.</p>
+<div class="ej"><span class="t">Ejemplo 1 ($\mu(x)$). $(x^2+y^2+x)\dd x + xy\dd y = 0$</span>
+<p>$M_y = 2y$, $N_x = y$: no es exacta. $\frac{M_y-N_x}{N} = \frac{y}{xy} = \frac{1}{x}$, solo de $x$: $\mu = e^{\int\frac{\mathrm{d}x}{x}} = x$.</p>
+<p>$(x^3+xy^2+x^2)\dd x + x^2y\dd y = 0$ ya es exacta ($M_y = 2xy = N_x$). $F = \frac{x^4}{4} + \frac{x^2y^2}{2} + \frac{x^3}{3} + \varphi(y)$, y $F_y = x^2y$ da $\varphi' = 0$:</p>
+$$\frac{x^4}{4} + \frac{x^2y^2}{2} + \frac{x^3}{3} = C .$$
+</div>
+<div class="ej"><span class="t">Ejemplo 2 ($\mu(y)$). $y\dd x + (2x - y\,e^y)\dd y = 0$</span>
+<p>$M_y = 1$, $N_x = 2$. $\frac{N_x-M_y}{M} = \frac{1}{y}$, solo de $y$: $\mu = e^{\int\frac{\mathrm{d}y}{y}} = y$.</p>
+<p>$y^2\dd x + (2xy - y^2e^y)\dd y = 0$ es exacta ($M_y = 2y = N_x$). $F = xy^2 + \varphi(y)$; $F_y = 2xy + \varphi'(y) = 2xy - y^2e^y \Rightarrow \varphi = -\int y^2e^y\dd y = -(y^2-2y+2)e^y$ (por partes dos veces):</p>
+$$xy^2 - (y^2-2y+2)\,e^y = C .$$
+</div>
+
+<!-- ============================================================ -->
+<h2>9. Ecuaciones lineales</h2>
+<div class="def"><b>Ecuación lineal de primer orden.</b> $y' + P(x)\,y = Q(x)$: $y$ e $y'$ aparecen con exponente $1$, sin multiplicarse entre sí ni dentro de otras funciones. Si $Q = 0$ es <i>homogénea</i> (incompleta); si $Q\neq 0$, <i>completa</i>. La solución general es siempre $y = y_h + y_p$: la general de la homogénea más una particular de la completa.</div>
+
+<h3>Método 1: factor integrante</h3>
+<p>Se multiplica por $\mu(x) = e^{\int P(x)\dd x}$. El primer miembro se convierte en la derivada de un producto, $(\mu\,y)' = \mu\,Q$, y se integra:</p>
+$$y = e^{-\int P(x)\dd x}\left[\int Q(x)\,e^{\int P(x)\dd x}\dd x + C\right]$$
+
+<h3>Método 2: variación de las constantes (Lagrange)</h3>
+<ol>
+<li>Resolver la homogénea $y' + P\,y = 0$ (separable): $y_h = C\,e^{-\int P\dd x}$.</li>
+<li>Suponer $C = C(x)$: $y = C(x)\,e^{-\int P\dd x}$. Al sustituir en la completa se cancelan los términos con $C(x)$ y queda $C'(x) = Q(x)\,e^{\int P\dd x}$.</li>
+<li>Integrar $C'(x)$ (con su constante) y sustituir. Se llega a la misma fórmula.</li>
+</ol>
+<p class="peq">Si la ecuación es lineal en $x$ como función de $y$, $\frac{\mathrm{d}x}{\mathrm{d}y} + P(y)\,x = Q(y)$, se aplica lo mismo intercambiando los papeles de $x$ e $y$.</p>
+
+<div class="ej"><span class="t">Ejemplo 1. $y' + \dfrac{y}{x} = x^2$</span>
+<p>$P = \frac{1}{x}$, $\mu = e^{\ln x} = x$. $(xy)' = x^3 \Rightarrow xy = \frac{x^4}{4} + C$:</p>
+$$y = \frac{x^3}{4} + \frac{C}{x} .$$
+</div>
+<div class="ej"><span class="t">Ejemplo 2 (variación de constantes). $y' - 2y = e^x$</span>
+<p>Homogénea: $y_h = Ce^{2x}$. Con $y = C(x)e^{2x}$: $C'(x)e^{2x} = e^x \Rightarrow C'(x) = e^{-x} \Rightarrow C(x) = -e^{-x} + K$.</p>
+$$y = Ke^{2x} - e^x .$$
+</div>
+
+<!-- ============================================================ -->
+<h2>10. Ecuación de Bernoulli</h2>
+<table>
+<thead><tr><th>Forma</th><th>Cambio</th><th>Ecuación que resulta</th></tr></thead>
+<tbody>
+<tr><td>$y' + P(x)\,y = Q(x)\,y^n$, &nbsp; $n\neq 0, 1$</td><td>$z = y^{1-n}$, &nbsp; $z' = (1-n)\,y^{-n}y'$</td><td>$z' + (1-n)P(x)\,z = (1-n)Q(x)$ &nbsp; (lineal)</td></tr>
+</tbody>
+</table>
+<p><b>Pasos.</b> Dividir la ecuación por $y^n$: $y^{-n}y' + P\,y^{1-n} = Q$. Con $z = y^{1-n}$ el primer término es $\frac{z'}{1-n}$. Resolver la lineal en $z$ y deshacer el cambio. Si $n>0$, $y = 0$ también es solución (se pierde al dividir por $y^n$). Con $n = 0$ o $n = 1$ la ecuación ya es lineal.</p>
+<div class="ej"><span class="t">Ejemplo. $y' + \dfrac{y}{x} = x\,y^2$ &nbsp; ($n = 2$)</span>
+<p>$z = y^{-1}$: $z' - \frac{z}{x} = -x$. Lineal con $\mu = \frac{1}{x}$: $\left(\frac{z}{x}\right)' = -1 \Rightarrow z = -x^2 + Cx$.</p>
+$$y = \frac{1}{Cx - x^2} \qquad(\text{y además } y = 0).$$
+</div>
+
+<!-- ============================================================ -->
+<h2>11. Ecuación de Riccati</h2>
+<table>
+<thead><tr><th>Forma</th><th>Requisito</th><th>Cambio</th><th>Ecuación que resulta</th></tr></thead>
+<tbody>
+<tr><td>$y' = P(x) + Q(x)\,y + R(x)\,y^2$</td><td>conocer una solución particular $y_1$</td><td>$y = y_1 + \dfrac{1}{v}$</td><td>$v' + \big(Q + 2R\,y_1\big)\,v = -R$ &nbsp; (lineal)</td></tr>
+</tbody>
+</table>
+<p>También se puede usar $y = y_1 + z$, que lleva a una Bernoulli con $n = 2$: $z' - (Q+2Ry_1)\,z = R\,z^2$. La solución particular suele darse en el enunciado o se busca probando funciones sencillas ($ax$, $\frac{a}{x}$, $e^{ax}$, constantes…).</p>
+<div class="ej"><span class="t">Ejemplo. $y' = y^2 - \dfrac{2}{x^2}$</span>
+<p>Probando $y_1 = \frac{a}{x}$: $-\frac{a}{x^2} = \frac{a^2-2}{x^2} \Rightarrow a^2 + a - 2 = 0 \Rightarrow a = 1$. Así $y_1 = \frac{1}{x}$; aquí $P = -\frac{2}{x^2}$, $Q = 0$, $R = 1$.</p>
+<p>$v' + \frac{2}{x}v = -1$, lineal con $\mu = x^2$: $(x^2v)' = -x^2 \Rightarrow v = -\frac{x}{3} + \frac{C}{x^2} = \frac{3C - x^3}{3x^2}$.</p>
+$$y = \frac{1}{x} + \frac{3x^2}{K - x^3} \qquad (K = 3C).$$
+</div>
+
+<!-- ============================================================ -->
+<h2>12. Ecuaciones no resueltas en $y'$: Clairaut y Lagrange</h2>
+<p><b>Cuando no se puede despejar $y'$, se llama $p = y'$, se deriva la ecuación respecto de $x$ y se resuelve una ecuación en $p$. La solución suele quedar en forma paramétrica (con $p$ como parámetro).</b></p>
+<table>
+<thead><tr><th>Ecuación</th><th>Forma</th><th>Solución general</th><th>Solución singular</th></tr></thead>
+<tbody>
+<tr><td>Clairaut</td><td>$y = x\,p + g(p)$</td><td>$y = Cx + g(C)$ &nbsp; (rectas)</td><td>$x = -g'(p)$, &nbsp; $y = -p\,g'(p) + g(p)$ &nbsp; (envolvente)</td></tr>
+<tr><td>Lagrange</td><td>$y = x\,\varphi(p) + \psi(p)$, &nbsp; $\varphi(p)\neq p$</td><td>resolver la lineal $\dfrac{\mathrm{d}x}{\mathrm{d}p} + \dfrac{\varphi'(p)}{\varphi(p)-p}\,x = \dfrac{\psi'(p)}{p-\varphi(p)}$; &nbsp; luego $y = x\,\varphi(p) + \psi(p)$</td><td>rectas $y = x\,\varphi(p_0) + \psi(p_0)$ con $\varphi(p_0) = p_0$</td></tr>
+</tbody>
+</table>
+<p><b>Origen.</b> Derivando $y = x\varphi(p) + \psi(p)$ respecto de $x$: $p = \varphi(p) + \big(x\varphi'(p) + \psi'(p)\big)\frac{\mathrm{d}p}{\mathrm{d}x}$. En Clairaut ($\varphi(p) = p$) queda $\big(x + g'(p)\big)\frac{\mathrm{d}p}{\mathrm{d}x} = 0$: o bien $p = C$ (solución general) o bien $x = -g'(p)$ (singular). En Lagrange se toma $x$ como función de $p$ y resulta la ecuación lineal de la tabla.</p>
+<div class="ej"><span class="t">Ejemplo 1 (Clairaut). $y = xy' + (y')^2$</span>
+<p>$g(p) = p^2$. General: $y = Cx + C^2$. Singular: $x = -2p$, $y = -2p^2 + p^2 = -p^2$; eliminando $p$, $y = -\frac{x^2}{4}$ (la parábola envolvente de las rectas).</p>
+</div>
+<div class="ej"><span class="t">Ejemplo 2 (Lagrange). $y = 2xy' - (y')^2$</span>
+<p>$\varphi(p) = 2p$, $\psi(p) = -p^2$. La lineal es $\frac{\mathrm{d}x}{\mathrm{d}p} + \frac{2}{p}x = 2$; con $\mu = p^2$: $(p^2x)' = 2p^2 \Rightarrow x = \frac{2p}{3} + \frac{C}{p^2}$. Entonces $y = 2xp - p^2 = \frac{p^2}{3} + \frac{2C}{p}$.</p>
+$$x = \frac{2p}{3} + \frac{C}{p^2}, \qquad y = \frac{p^2}{3} + \frac{2C}{p} .$$
+<p>Además, $\varphi(p_0) = p_0 \Rightarrow p_0 = 0$ da la solución $y = 0$.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>13. Aplicaciones típicas</h2>
+<table>
+<thead><tr><th>Modelo</th><th>Ecuación</th><th>Solución</th></tr></thead>
+<tbody>
+<tr><td>Crecimiento o desintegración</td><td>$y' = k\,y$</td><td>$y = y_0\,e^{kt}$; &nbsp; vida media o tiempo de duplicación $T = \dfrac{\ln 2}{|k|}$</td></tr>
+<tr><td>Enfriamiento de Newton</td><td>$T' = -k\,(T - T_a)$, &nbsp; $k>0$</td><td>$T = T_a + (T_0 - T_a)\,e^{-kt}$</td></tr>
+<tr><td>Crecimiento logístico</td><td>$y' = r\,y\left(1 - \dfrac{y}{K}\right)$</td><td>$y = \dfrac{K}{1 + A\,e^{-rt}}$, &nbsp; $A = \dfrac{K - y_0}{y_0}$</td></tr>
+<tr><td>Mezclas (depósito)</td><td>$Q' = c_e\,v_e - \dfrac{Q}{V(t)}\,v_s$</td><td>lineal en $Q$; &nbsp; $V(t) = V_0 + (v_e - v_s)\,t$</td></tr>
+<tr><td>Trayectorias ortogonales</td><td>familia $\leftrightarrow$ $y' = f(x,y)$</td><td>las ortogonales cumplen $y' = -\dfrac{1}{f(x,y)}$</td></tr>
+</tbody>
+</table>
+<p class="peq">En mezclas: $Q(t)$ es la cantidad de soluto, $c_e$ la concentración que entra, $v_e$ y $v_s$ los caudales de entrada y salida.</p>
+<div class="ej"><span class="t">Ejemplo (trayectorias ortogonales). Familia de parábolas $y = Cx^2$</span>
+<p>1. EDO de la familia: derivando, $y' = 2Cx$, y eliminando $C = \frac{y}{x^2}$: $y' = \frac{2y}{x}$.</p>
+<p>2. Ortogonales: $y' = -\frac{x}{2y}$, separable: $2y\dd y = -x\dd x \Rightarrow y^2 = -\frac{x^2}{2} + C$, es decir, la familia de elipses $x^2 + 2y^2 = K$.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 class="salto">14. Formulario rápido</h2>
+<table>
+<thead><tr><th>Tipo</th><th>Forma</th><th>Método / cambio</th><th>Resultado</th></tr></thead>
+<tbody>
+<tr><td>Separables</td><td>$y' = g(x)h(y)$</td><td>separar e integrar</td><td>$\int\frac{\mathrm{d}y}{h(y)} = \int g\dd x + C$; añadir $h(y_0) = 0$</td></tr>
+<tr><td>$f(ax+by+c)$</td><td>$y' = f(ax+by+c)$</td><td>$z = ax+by+c$</td><td>$z' = a + b f(z)$, separable</td></tr>
+<tr><td>Homogénea</td><td>$y' = f\!\left(\frac{y}{x}\right)$</td><td>$y = vx$, $y' = v + xv'$</td><td>$\int\frac{\mathrm{d}v}{f(v)-v} = \ln|x| + C$</td></tr>
+<tr><td>Red. homogénea (se cortan)</td><td>$f\!\left(\frac{a_1x+b_1y+c_1}{a_2x+b_2y+c_2}\right)$, $\Delta\neq 0$</td><td>$X = x - x_0$, $Y = y - y_0$</td><td>homogénea en $X$, $Y$</td></tr>
+<tr><td>Red. homogénea (paralelas)</td><td>ídem, $\Delta = 0$</td><td>$z = a_1x + b_1y$</td><td>separable</td></tr>
+<tr><td>Exacta</td><td>$M\dd x + N\dd y = 0$, $M_y = N_x$</td><td>$F = \int M\dd x + \varphi(y)$, &nbsp; $F_y = N$</td><td>$F(x,y) = C$</td></tr>
+<tr><td>Factor $\mu(x)$</td><td>$\frac{M_y-N_x}{N} = h(x)$</td><td>$\mu = e^{\int h\dd x}$</td><td>exacta</td></tr>
+<tr><td>Factor $\mu(y)$</td><td>$\frac{N_x-M_y}{M} = h(y)$</td><td>$\mu = e^{\int h\dd y}$</td><td>exacta</td></tr>
+<tr><td>Factor $\mu(z)$</td><td>$\frac{M_y-N_x}{Nz_x - Mz_y} = h(z)$</td><td>$\mu = e^{\int h\dd z}$</td><td>exacta</td></tr>
+<tr><td>Lineal</td><td>$y' + P y = Q$</td><td>$\mu = e^{\int P\dd x}$ o variación de constantes</td><td>$y = e^{-\int P}\left[\int Q\,e^{\int P}\dd x + C\right]$</td></tr>
+<tr><td>Bernoulli</td><td>$y' + Py = Qy^n$</td><td>$z = y^{1-n}$</td><td>$z' + (1-n)Pz = (1-n)Q$; y $y = 0$ si $n>0$</td></tr>
+<tr><td>Riccati</td><td>$y' = P + Qy + Ry^2$, &nbsp; $y_1$ conocida</td><td>$y = y_1 + \frac{1}{v}$</td><td>$v' + (Q + 2Ry_1)v = -R$</td></tr>
+<tr><td>Clairaut</td><td>$y = xp + g(p)$</td><td>derivar respecto de $x$</td><td>$y = Cx + g(C)$; singular $x = -g'(p)$</td></tr>
+<tr><td>Lagrange</td><td>$y = x\varphi(p) + \psi(p)$</td><td>derivar; $x = x(p)$</td><td>lineal en $x(p)$; solución paramétrica</td></tr>
+<tr><td>PVI</td><td>$y(x_0) = y_0$</td><td>sustituir en la general</td><td>determina $C$</td></tr>
+</tbody>
+</table>
+
+<h3>Integrales y trucos que más se usan al resolver</h3>
+<table>
+<thead><tr><th>Situación</th><th>Recurso</th></tr></thead>
+<tbody>
+<tr><td>Aparece $\ln|y| = \dots + C$</td><td>$y = K\,e^{\dots}$ con $K = \pm e^C$ (y $K = 0$ si $y = 0$ es solución)</td></tr>
+<tr><td>Factor integrante con logaritmos</td><td>$e^{\ln x} = x$, &nbsp; $e^{-\ln x} = \frac{1}{x}$, &nbsp; $e^{k\ln x} = x^k$ (para $x>0$)</td></tr>
+<tr><td>Comprobar una solución implícita $F(x,y) = C$</td><td>$y' = -\dfrac{F_x}{F_y}$ debe coincidir con la ecuación</td></tr>
+<tr><td>$\int\frac{\mathrm{d}v}{f(v)-v}$ racional</td><td>fracciones simples (ver tema 6)</td></tr>
+<tr><td>$\int P(x)\,e^{ax}\dd x$ en lineales</td><td>por partes o método de la tabla (tema 6)</td></tr>
+</tbody>
+</table>
+
+</body>
+</html>

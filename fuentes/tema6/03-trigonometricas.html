@@ -1,0 +1,126 @@
+
+<!-- ============================================================ -->
+<h2 class="salto">6.6 Integrales trigonométricas</h2>
+
+<p><b>Si el integrando es una expresión racional en $\sen x$ y $\cos x$ (sumas, productos y cocientes de senos y cosenos), siempre se puede convertir en una integral racional con un cambio de variable. El cambio adecuado se elige estudiando la paridad del integrando en seno y en coseno.</b></p>
+
+<p>Antes de nada, comprueba si la integral es inmediata (por ejemplo $\int\sen^4 x\cos x\dd x = \frac{\sen^5 x}{5} + C$). Si no lo es, se prueban los criterios en este orden, porque los tres primeros dan integrales más sencillas que el cambio general:</p>
+
+<h3>1) Impar en seno: cambio $\cos x = t$</h3>
+<div class="def"><b>Impar en seno.</b> Si al cambiar todos los $\sen x$ por $-\sen x$ (dejando los cosenos igual) la función queda cambiada de signo: $R(-\sen x,\cos x) = -R(\sen x,\cos x)$.</div>
+$$\cos x = t, \qquad \sen x = \sqrt{1-t^2}, \qquad \mathrm{d}x = \frac{-\mathrm{d}t}{\sqrt{1-t^2}}$$
+<p>(Las fórmulas salen de $\mathrm{d}t = -\sen x\dd x$ y $\sen^2 x + \cos^2 x = 1$.) En la práctica es más cómodo «guardar» un $\sen x$ junto al $\mathrm{d}x$, porque $\sen x\dd x = -\mathrm{d}t$, y escribir el resto de senos con $\sen^2 x = 1 - t^2$.</p>
+<div class="ej"><span class="t">Ejemplo. $\int\sen^3 x\cos^2 x\dd x$</span>
+<p>Compruebo: $(-\sen x)^3\cos^2 x = -\sen^3 x\cos^2 x$. Es impar en seno.</p>
+$$\int\left(\sqrt{1-t^2}\right)^3 t^2\,\frac{-\mathrm{d}t}{\sqrt{1-t^2}} = -\int(1-t^2)\,t^2\dd t = -\int(t^2-t^4)\dd t = -\left[\frac{t^3}{3} - \frac{t^5}{5}\right] + C .$$
+<p>Deshago el cambio, $t = \cos x$:</p>
+$$\int\sen^3 x\cos^2 x\dd x = -\frac{\cos^3 x}{3} + \frac{\cos^5 x}{5} + C .$$
+</div>
+
+<h3>2) Impar en coseno: cambio $\sen x = t$</h3>
+<div class="def"><b>Impar en coseno.</b> Si al cambiar todos los $\cos x$ por $-\cos x$ la función queda cambiada de signo: $R(\sen x,-\cos x) = -R(\sen x,\cos x)$.</div>
+$$\sen x = t, \qquad \cos x = \sqrt{1-t^2}, \qquad \mathrm{d}x = \frac{\mathrm{d}t}{\sqrt{1-t^2}}$$
+<div class="ej"><span class="t">Ejemplo. $\int\cos^3 x\dd x$</span>
+<p>Compruebo: $(-\cos x)^3 = -\cos^3 x$. Es impar en coseno.</p>
+$$\int\left(\sqrt{1-t^2}\right)^3\frac{\mathrm{d}t}{\sqrt{1-t^2}} = \int(1-t^2)\dd t = t - \frac{t^3}{3} + C = \sen x - \frac{\sen^3 x}{3} + C .$$
+</div>
+
+<h3>3) Par en seno y coseno: cambio $\tg x = t$</h3>
+<div class="def"><b>Par en seno y coseno.</b> Si al cambiar a la vez todos los senos por $-\sen x$ y todos los cosenos por $-\cos x$ la función queda igual: $R(-\sen x,-\cos x) = R(\sen x,\cos x)$.</div>
+$$\tg x = t, \qquad \sen x = \frac{t}{\sqrt{1+t^2}}, \qquad \cos x = \frac{1}{\sqrt{1+t^2}}, \qquad \mathrm{d}x = \frac{\mathrm{d}t}{1+t^2}$$
+<p>(Salen de $1+\tg^2 x = \frac{1}{\cos^2 x}$ y $\mathrm{d}t = (1+t^2)\dd x$.) Útiles: $\sen^2 x = \frac{t^2}{1+t^2}$, $\cos^2 x = \frac{1}{1+t^2}$, $\sen x\cos x = \frac{t}{1+t^2}$.</p>
+<div class="ej"><span class="t">Ejemplo. $\displaystyle\int\frac{\sen^2 x}{\cos^2 x}\dd x = \int\tg^2 x\dd x$</span>
+<p>Compruebo: $\frac{(-\sen x)^2}{(-\cos x)^2} = \frac{\sen^2 x}{\cos^2 x}$. Es par en seno y coseno.</p>
+$$\int\tg^2 x\dd x = \int t^2\,\frac{\mathrm{d}t}{1+t^2} .$$
+<p>Es racional con grados iguales: divido, $\frac{t^2}{1+t^2} = 1 - \frac{1}{1+t^2}$.</p>
+$$\int\left(1 - \frac{1}{1+t^2}\right)\mathrm{d}t = t - \arctg t + C = \tg x - \arctg(\tg x) + C = \tg x - x + C .$$
+<p>Más rápido, sin cambio: $\int\tg^2 x\dd x = \int(1+\tg^2 x)\dd x - \int\mathrm{d}x = \tg x - x + C$.</p>
+</div>
+
+<h3>4) Cambio general: $\tg\frac{x}{2} = t$</h3>
+<p>Se utiliza cuando no se cumple ninguna de las anteriores. <b>Vale para cualquier integral racional en seno y coseno</b>, pero suele dar integrales racionales más largas.</p>
+$$\tg\frac{x}{2} = t, \qquad \sen x = \frac{2t}{1+t^2}, \qquad \cos x = \frac{1-t^2}{1+t^2}, \qquad \mathrm{d}x = \frac{2\dd t}{1+t^2}$$
+<p><i>De dónde salen.</i> Por el ángulo doble, $\sen x = 2\sen\frac{x}{2}\cos\frac{x}{2} = 2\tg\frac{x}{2}\cos^2\frac{x}{2} = \frac{2t}{1+t^2}$, usando $\cos^2\frac{x}{2} = \frac{1}{1+t^2}$. Análogamente $\cos x = \cos^2\frac{x}{2} - \sen^2\frac{x}{2} = \cos^2\frac{x}{2}(1-t^2)$. Y como $x = 2\arctg t$, $\mathrm{d}x = \frac{2\dd t}{1+t^2}$.</p>
+<div class="ej"><span class="t">Ejemplo. $\displaystyle\int\frac{\mathrm{d}x}{3+5\cos x}$</span>
+<p>Al cambiar $\cos x$ por $-\cos x$ queda $\frac{1}{3-5\cos x}$: ni igual ni cambiada de signo. No hay seno. Uso el cambio general:</p>
+$$\int\frac{\frac{2\dd t}{1+t^2}}{3 + 5\cdot\frac{1-t^2}{1+t^2}} = \int\frac{\frac{2\dd t}{1+t^2}}{\frac{3+3t^2+5-5t^2}{1+t^2}} = \int\frac{2\dd t}{8-2t^2} = \int\frac{\mathrm{d}t}{4-t^2} .$$
+<p>Racional con raíces reales simples $t = \pm 2$:</p>
+$$\frac{1}{4-t^2} = \frac{A}{2-t} + \frac{B}{2+t} \;\Longrightarrow\; 1 = A(2+t) + B(2-t) .$$
+<p>Si $t = 2$: $1 = 4A$, $A = \frac{1}{4}$. &nbsp; Si $t = -2$: $1 = 4B$, $B = \frac{1}{4}$.</p>
+$$\int\frac{\mathrm{d}t}{4-t^2} = \frac{1}{4}\int\frac{\mathrm{d}t}{2-t} + \frac{1}{4}\int\frac{\mathrm{d}t}{2+t} = -\frac{1}{4}\ln|2-t| + \frac{1}{4}\ln|2+t| + C .$$
+<p>Deshago el cambio, $t = \tg\frac{x}{2}$:</p>
+$$\int\frac{\mathrm{d}x}{3+5\cos x} = \frac{1}{4}\ln\left|\frac{2+\tg\frac{x}{2}}{2-\tg\frac{x}{2}}\right| + C .$$
+</div>
+
+<h3>5) Potencias pares de seno y coseno: reducción de grado</h3>
+<p>Para $\int\sen^2 x\dd x$, $\int\cos^2 x\dd x$ y, en general, $\int\sen^m x\cos^n x\dd x$ con $m$ y $n$ pares, lo más rápido es bajar el grado con las fórmulas del ángulo mitad (son pares en seno y coseno, así que también valdría $\tg x = t$, pero es más largo):</p>
+$$\sen^2 x = \frac{1}{2}(1-\cos 2x), \qquad \cos^2 x = \frac{1}{2}(1+\cos 2x)$$
+<div class="ej"><span class="t">Ejemplos</span>
+<p>$\displaystyle\int\sen^2 x\dd x = \int\frac{1}{2}(1-\cos 2x)\dd x = \frac{1}{2}\left[x - \frac{\sen 2x}{2}\right] + C .$</p>
+<p>$\displaystyle\int\cos^2 x\dd x = \frac{1}{2}\left[x + \frac{\sen 2x}{2}\right] + C .$</p>
+<p>$\displaystyle\int\sen^2 x\cos^2 x\dd x = \int\frac{\sen^2 2x}{4}\dd x = \frac{1}{4}\int\frac{1}{2}(1-\cos 4x)\dd x = \frac{x}{8} - \frac{\sen 4x}{32} + C$ &nbsp; (usando $\sen x\cos x = \frac{1}{2}\sen 2x$).</p>
+</div>
+<p>Si alguno de los exponentes es impar, la función es impar en seno o en coseno y se usa el caso 1 o 2.</p>
+
+<h3>6) Productos de senos y cosenos con distinto ángulo</h3>
+<p>Se transforma el producto en suma con estas fórmulas y cada término es inmediato:</p>
+$$\sen(ax)\sen(bx) = \frac{1}{2}\big[\cos(a-b)x - \cos(a+b)x\big]$$
+$$\sen(ax)\cos(bx) = \frac{1}{2}\big[\sen(a+b)x + \sen(a-b)x\big]$$
+$$\cos(ax)\cos(bx) = \frac{1}{2}\big[\cos(a-b)x + \cos(a+b)x\big]$$
+<div class="ej"><span class="t">Ejemplo. $\int\sen 3x\,\sen x\dd x$</span>
+$$\int\sen 3x\sen x\dd x = \int\frac{1}{2}\big[\cos 2x - \cos 4x\big]\dd x = \frac{1}{2}\left[\frac{\sen 2x}{2} - \frac{\sen 4x}{4}\right] + C .$$
+</div>
+
+<h3>Resumen de los cambios trigonométricos</h3>
+<table>
+<thead><tr><th>Caso</th><th>Cómo se reconoce</th><th>Cambio</th></tr></thead>
+<tbody>
+<tr><td>Impar en seno</td><td>$R(-\sen,\cos) = -R(\sen,\cos)$</td><td>$\cos x = t$</td></tr>
+<tr><td>Impar en coseno</td><td>$R(\sen,-\cos) = -R(\sen,\cos)$</td><td>$\sen x = t$</td></tr>
+<tr><td>Par en seno y coseno</td><td>$R(-\sen,-\cos) = R(\sen,\cos)$</td><td>$\tg x = t$</td></tr>
+<tr><td>Ninguno de los anteriores</td><td>siempre válido</td><td>$\tg\frac{x}{2} = t$</td></tr>
+<tr><td>$\sen^2 x$, $\cos^2 x$ (potencias pares)</td><td>exponentes pares</td><td>reducción de grado</td></tr>
+<tr><td>$\sen(ax)\cos(bx)$, etc.</td><td>ángulos distintos</td><td>producto → suma</td></tr>
+</tbody>
+</table>
+
+<!-- ============================================================ -->
+<h2 class="salto">6.7 Fórmulas trigonométricas más importantes</h2>
+
+<p><b>Estas son las identidades que se usan para preparar o terminar integrales. Las de reducción de grado y las de producto a suma son las más importantes del tema.</b></p>
+
+<h3>Relaciones fundamentales</h3>
+$$\sen^2 x + \cos^2 x = 1, \qquad 1+\tg^2 x = \frac{1}{\cos^2 x} = \sec^2 x, \qquad 1+\cotg^2 x = \frac{1}{\sen^2 x} = \cosec^2 x$$
+$$\tg x = \frac{\sen x}{\cos x}, \qquad \sec x = \frac{1}{\cos x}, \qquad \cosec x = \frac{1}{\sen x}, \qquad \cotg x = \frac{1}{\tg x}$$
+<p>Paridad: $\sen(-x) = -\sen x$, $\cos(-x) = \cos x$, $\tg(-x) = -\tg x$.</p>
+
+<h3>Suma y diferencia de ángulos</h3>
+$$\sen(a\pm b) = \sen a\cos b \pm \cos a\sen b, \qquad \cos(a\pm b) = \cos a\cos b \mp \sen a\sen b, \qquad \tg(a\pm b) = \frac{\tg a\pm\tg b}{1\mp\tg a\tg b}$$
+
+<h3>Ángulo doble</h3>
+$$\sen 2x = 2\sen x\cos x, \qquad \cos 2x = \cos^2 x - \sen^2 x = 2\cos^2 x - 1 = 1 - 2\sen^2 x, \qquad \tg 2x = \frac{2\tg x}{1-\tg^2 x}$$
+
+<h3>Ángulo mitad y reducción de grado</h3>
+<p>Despejando de $\cos 2x$ se obtienen las fórmulas de reducción. Escritas con un ángulo cualquiera $\square$:</p>
+$$\sen^2\frac{\square}{2} = \frac{1}{2}\big[1-\cos\square\big], \qquad \cos^2\frac{\square}{2} = \frac{1}{2}\big[1+\cos\square\big], \qquad \tg\frac{\square}{2} = \frac{\sen\square}{1+\cos\square} = \frac{1-\cos\square}{\sen\square}$$
+<p>En particular, $\sen^2 x = \frac{1}{2}(1-\cos 2x)$ y $\cos^2 x = \frac{1}{2}(1+\cos 2x)$.</p>
+
+<h3>Producto a suma</h3>
+$$\sen A\sen B = \frac{1}{2}\big[\cos(A-B) - \cos(A+B)\big], \quad \sen A\cos B = \frac{1}{2}\big[\sen(A+B) + \sen(A-B)\big], \quad \cos A\cos B = \frac{1}{2}\big[\cos(A-B) + \cos(A+B)\big]$$
+
+<h3>Suma a producto</h3>
+$$\sen A + \sen B = 2\sen\frac{A+B}{2}\cos\frac{A-B}{2}, \qquad \sen A - \sen B = 2\cos\frac{A+B}{2}\sen\frac{A-B}{2}$$
+$$\cos A + \cos B = 2\cos\frac{A+B}{2}\cos\frac{A-B}{2}, \qquad \cos A - \cos B = -2\sen\frac{A+B}{2}\sen\frac{A-B}{2}$$
+
+<h3>Expresiones en función de $t = \tg\frac{x}{2}$ y de $t = \tg x$</h3>
+$$t = \tg\tfrac{x}{2}:\quad \sen x = \frac{2t}{1+t^2},\quad \cos x = \frac{1-t^2}{1+t^2}; \qquad\qquad t = \tg x:\quad \sen^2 x = \frac{t^2}{1+t^2},\quad \cos^2 x = \frac{1}{1+t^2}$$
+
+<h3>Valores notables (para la regla de Barrow)</h3>
+<table>
+<thead><tr><th>Ángulo</th><th>$0$</th><th>$\frac{\pi}{6}$</th><th>$\frac{\pi}{4}$</th><th>$\frac{\pi}{3}$</th><th>$\frac{\pi}{2}$</th><th>$\pi$</th></tr></thead>
+<tbody>
+<tr><td>$\sen$</td><td>$0$</td><td>$\frac{1}{2}$</td><td>$\frac{\sqrt{2}}{2}$</td><td>$\frac{\sqrt{3}}{2}$</td><td>$1$</td><td>$0$</td></tr>
+<tr><td>$\cos$</td><td>$1$</td><td>$\frac{\sqrt{3}}{2}$</td><td>$\frac{\sqrt{2}}{2}$</td><td>$\frac{1}{2}$</td><td>$0$</td><td>$-1$</td></tr>
+<tr><td>$\tg$</td><td>$0$</td><td>$\frac{\sqrt{3}}{3}$</td><td>$1$</td><td>$\sqrt{3}$</td><td>no existe</td><td>$0$</td></tr>
+</tbody>
+</table>

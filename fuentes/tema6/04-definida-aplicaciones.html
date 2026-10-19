@@ -1,0 +1,180 @@
+
+<!-- ============================================================ -->
+<h2 class="salto">6.8 Integral definida y regla de Barrow</h2>
+
+<p><b>La integral definida $\int_a^b f(x)\dd x$ es un número: el área con signo comprendida entre la gráfica de $f$ y el eje $X$ entre $x = a$ y $x = b$ (las zonas por encima del eje cuentan positivo y las de debajo, negativo). Se calcula con una primitiva mediante la regla de Barrow.</b></p>
+
+<div class="def"><b>Integral definida (idea).</b> Se divide $[a,b]$ en $n$ trozos de anchura $\Delta x$, se toma en cada trozo un rectángulo de altura $f(x_i)$ y se suman las áreas: $\sum f(x_i)\,\Delta x$. Si al hacer los trozos cada vez más finos estas sumas (sumas de Riemann) tienden a un número, ese número es $\int_a^b f(x)\dd x$. Toda función continua en $[a,b]$ es integrable.</div>
+
+<h3>Propiedades</h3>
+<ul>
+<li>Linealidad: $\int_a^b(\alpha f+\beta g)\dd x = \alpha\int_a^b f\dd x + \beta\int_a^b g\dd x$.</li>
+<li>$\int_a^a f\dd x = 0$ &nbsp; y &nbsp; $\int_b^a f\dd x = -\int_a^b f\dd x$.</li>
+<li>Aditividad respecto del intervalo: $\int_a^b f\dd x = \int_a^c f\dd x + \int_c^b f\dd x$ (se usa para partir en los cortes con el eje).</li>
+<li>Monotonía: si $f\leq g$ en $[a,b]$, entonces $\int_a^b f\dd x\leq\int_a^b g\dd x$; y $\left|\int_a^b f\dd x\right|\leq\int_a^b|f|\dd x$.</li>
+<li>Simetría (útil para ahorrar cálculos): si $f$ es par, $\int_{-a}^{a}f\dd x = 2\int_0^a f\dd x$; si $f$ es impar, $\int_{-a}^{a}f\dd x = 0$.</li>
+</ul>
+
+<h3>Teorema fundamental del cálculo y regla de Barrow</h3>
+<div class="def"><b>Teorema fundamental del cálculo.</b> Si $f$ es continua en $[a,b]$, la función $F(x) = \int_a^x f(t)\dd t$ es derivable y $F'(x) = f(x)$. Es decir, integrar y derivar son operaciones inversas. Con la regla de la cadena: $\dfrac{\mathrm{d}}{\mathrm{d}x}\displaystyle\int_a^{g(x)} f(t)\dd t = f\big(g(x)\big)\,g'(x)$.</div>
+
+<div class="def"><b>Regla de Barrow.</b> Si $f$ es continua en $[a,b]$ y $G$ es una primitiva cualquiera de $f$, entonces
+$$\int_a^b f(x)\dd x = \Big[G(x)\Big]_a^b = G(b) - G(a) .$$
+Para resolver una integral definida: se calcula la integral indefinida (sin $C$, porque se cancela) y se aplica Barrow.</div>
+
+<div class="ej"><span class="t">Ejemplo</span>
+$$\int_1^3(x+2)\dd x = \left[\frac{x^2}{2} + 2x\right]_1^3 = \left(\frac{9}{2}+6\right) - \left(\frac{1}{2}+2\right) = 8\ \text{u}^2 .$$
+</div>
+
+<div class="nota"><b>Cuidado.</b> Barrow exige que $f$ sea continua en todo $[a,b]$. Por ejemplo, $\int_{-1}^{1}\frac{\mathrm{d}x}{x^2}$ «daría» $\left[-\frac{1}{x}\right]_{-1}^{1} = -2$, un número negativo para una función positiva: es falso, porque $\frac{1}{x^2}$ no es continua en $x = 0$ (esa integral es impropia y diverge).</div>
+
+<p><b>Teorema del valor medio integral.</b> Si $f$ es continua en $[a,b]$, existe $c\in[a,b]$ tal que $\int_a^b f(x)\dd x = f(c)\,(b-a)$. El número $f(c)$ es el valor medio de $f$ en el intervalo.</p>
+
+<!-- ============================================================ -->
+<h2>6.9 Aplicaciones: áreas planas</h2>
+
+<p><b>El área es siempre positiva. Como la integral definida cuenta negativas las zonas bajo el eje, hay que localizar dónde cambia de signo la función (o dónde se cortan las curvas) y separar la integral en esos puntos.</b> En general, el área entre $y = f(x)$ y el eje $X$ en $[a,b]$ es $\int_a^b|f(x)|\dd x$.</p>
+
+<h3>Respecto del eje $X$ (se integra en $x$)</h3>
+<table>
+<thead><tr><th>Caso</th><th>Situación</th><th>Área</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>$f\geq 0$ en $[a,b]$ (curva por encima del eje)</td><td>$A = \displaystyle\int_a^b f(x)\dd x$</td></tr>
+<tr><td>2</td><td>$f\leq 0$ en $[a,b]$ (curva por debajo)</td><td>$A = \left|\displaystyle\int_a^b f(x)\dd x\right|$</td></tr>
+<tr><td>3</td><td>$f$ cambia de signo en $b$, con cortes $a<b<c$</td><td>$A = \displaystyle\int_a^b f(x)\dd x + \left|\int_b^c f(x)\dd x\right|$</td></tr>
+<tr><td>4</td><td>entre dos curvas, con $f\geq g$ en $[a,b]$</td><td>$A = \displaystyle\int_a^b\big(f(x) - g(x)\big)\dd x$</td></tr>
+</tbody>
+</table>
+<p><b>Puntos de corte.</b> Con el eje $X$: se resuelve $f(x) = 0$. Entre dos curvas: se resuelve $f(x) = g(x)$. En el caso 4, $f$ es la que <b>está por encima</b> y $g$ la que <b>está por debajo</b>. Otra forma es poner $\left|\int_a^b(f-g)\dd x\right|$, pero <b>solo si las curvas no se cruzan dentro de $(a,b)$</b>; si se cruzan, hay que partir la integral en cada punto de corte.</p>
+
+<h3>Respecto del eje $Y$ (se integra en $y$)</h3>
+<p>Es lo mismo intercambiando los papeles de $x$ e $y$: la curva se escribe como $x = f(y)$ (despejando $x$) y se integra entre $y = m$ e $y = n$.</p>
+<table>
+<thead><tr><th>Caso</th><th>Situación</th><th>Área</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>curva a la derecha del eje $Y$</td><td>$A = \displaystyle\int_m^n f(y)\dd y$</td></tr>
+<tr><td>2</td><td>curva a la izquierda del eje $Y$</td><td>$A = \left|\displaystyle\int_m^n f(y)\dd y\right|$</td></tr>
+<tr><td>3</td><td>cortes con el eje $Y$ ($x = 0$) en $m<n<p$</td><td>$A = \displaystyle\int_m^n f(y)\dd y + \left|\int_n^p f(y)\dd y\right|$</td></tr>
+<tr><td>4</td><td>entre $x = f(y)$ (más a la derecha) y $x = g(y)$ (más a la izquierda)</td><td>$A = \displaystyle\int_m^n\big(f(y) - g(y)\big)\dd y$</td></tr>
+</tbody>
+</table>
+
+<div class="ej"><span class="t">Ejemplo 1. Área limitada por $y = x^2$, el eje $X$ y las rectas $x = 1$, $x = 2$</span>
+$$A = \int_1^2 x^2\dd x = \left[\frac{x^3}{3}\right]_1^2 = \frac{8}{3} - \frac{1}{3} = \frac{7}{3}\ \text{u}^2 .$$
+</div>
+
+<div class="ej"><span class="t">Ejemplo 2. Área limitada por $y = x^3 - x$ y el eje $X$</span>
+<p>Cortes: $x^3 - x = x(x^2-1) = 0 \Rightarrow x = -1,\ 0,\ 1$. Dando valores ($f(-0{,}5) = 0{,}375 > 0$, $f(0{,}5) = -0{,}375 < 0$) se ve que la curva está por encima en $[-1,0]$ y por debajo en $[0,1]$.</p>
+$$A = \int_{-1}^{0}(x^3-x)\dd x + \left|\int_0^1(x^3-x)\dd x\right| = \left[\frac{x^4}{4} - \frac{x^2}{2}\right]_{-1}^{0} + \left|\left[\frac{x^4}{4} - \frac{x^2}{2}\right]_0^1\right| = \frac{1}{4} + \left|-\frac{1}{4}\right| = \frac{1}{2}\ \text{u}^2 .$$
+<p>Si se hubiera integrado directamente de $-1$ a $1$ saldría $0$ (la función es impar), que no es el área.</p>
+</div>
+
+<div class="ej"><span class="t">Ejemplo 3. Área limitada por $y = x^2 - 4$ e $y = -x^2 + 4$</span>
+<p>Cortes: $x^2 - 4 = -x^2 + 4 \Rightarrow 2x^2 = 8 \Rightarrow x = \pm 2$. En $[-2,2]$ la parábola $y = -x^2+4$ está por encima.</p>
+$$A = \int_{-2}^{2}\big[(-x^2+4) - (x^2-4)\big]\dd x = \int_{-2}^{2}(-2x^2+8)\dd x = \left[-\frac{2x^3}{3} + 8x\right]_{-2}^{2} = \left(-\frac{16}{3}+16\right) - \left(\frac{16}{3}-16\right) = \frac{64}{3}\ \text{u}^2 .$$
+</div>
+
+<div class="ej"><span class="t">Ejemplo 4 (eje $Y$). Área limitada por $y = \sqrt{x}$, el eje $Y$ y las rectas $y = 1$, $y = 2$</span>
+<p>Despejo $x$: $y = \sqrt{x} \Rightarrow x = y^2$. La región está entre el eje $Y$ y la curva $x = y^2$, para $1\leq y\leq 2$:</p>
+$$A = \int_1^2 y^2\dd y = \left[\frac{y^3}{3}\right]_1^2 = \frac{8}{3} - \frac{1}{3} = \frac{7}{3}\ \text{u}^2 .$$
+</div>
+
+<div class="ej"><span class="t">Ejemplo 5 (eje $Y$ y simetría). Área limitada por $y = 4x^2$, $y = \frac{x^2}{9}$ y la recta $y = 2$</span>
+<p>Despejo $x$ (para $x\geq 0$): $y = 4x^2 \Rightarrow x = \frac{\sqrt{y}}{2}$; &nbsp; $y = \frac{x^2}{9} \Rightarrow x = 3\sqrt{y}$. La región es simétrica respecto del eje $Y$ (las dos funciones son pares), así que $A_T = 2A_1$, con $A_1$ la parte con $x\geq 0$. En ella, la curva más a la derecha es $x = 3\sqrt{y}$:</p>
+$$A_T = 2\int_0^2\left(3\sqrt{y} - \frac{\sqrt{y}}{2}\right)\mathrm{d}y = 2\cdot\frac{5}{2}\int_0^2 y^{1/2}\dd y = 5\left[\frac{y^{3/2}}{3/2}\right]_0^2 = 5\cdot\frac{2}{3}\cdot 2\sqrt{2} = \frac{20\sqrt{2}}{3}\ \text{u}^2 .$$
+</div>
+
+<h3>Área en paramétricas</h3>
+<p>Si la curva viene dada por $x = f(t)$, $y = g(t)$, se sustituye en $\int y\dd x$ con $\mathrm{d}x = f'(t)\dd t$:</p>
+$$A = \left|\int_{t_1}^{t_2} g(t)\,f'(t)\dd t\right| .$$
+<div class="ej"><span class="t">Ejemplo. Área de la elipse $x = a\cos t$, $y = b\sen t$, $t\in[0,2\pi]$</span>
+$$A = \left|\int_0^{2\pi} b\sen t\cdot(-a\sen t)\dd t\right| = ab\int_0^{2\pi}\sen^2 t\dd t = ab\cdot\frac{1}{2}\left[t - \frac{\sen 2t}{2}\right]_0^{2\pi} = \pi ab\ \text{u}^2 .$$
+<p>Con $a = b = r$ se obtiene el área del círculo, $\pi r^2$.</p>
+</div>
+
+<h3>Área en polares</h3>
+<p>Si la curva es $\rho = f(\theta)$, el área barrida por el radio entre los ángulos $\theta_1$ y $\theta_2$ se calcula sumando sectores circulares infinitesimales de área $\frac{1}{2}\rho^2\dd\theta$:</p>
+$$A = \frac{1}{2}\int_{\theta_1}^{\theta_2} f(\theta)^2\dd\theta .$$
+<div class="ej"><span class="t">Ejemplo. Área encerrada por la cardioide $\rho = 1 + \cos\theta$</span>
+<p>La curva se recorre entera con $\theta\in[0,2\pi]$ y es simétrica respecto del eje horizontal ($\cos$ es par), así que se integra de $0$ a $\pi$ y se multiplica por $2$:</p>
+$$A = \frac{1}{2}\cdot 2\int_0^{\pi}(1+\cos\theta)^2\dd\theta = \int_0^{\pi}\left(1 + 2\cos\theta + \cos^2\theta\right)\mathrm{d}\theta = \left[\theta + 2\sen\theta + \frac{\theta}{2} + \frac{\sen 2\theta}{4}\right]_0^{\pi} = \frac{3\pi}{2}\ \text{u}^2 .$$
+<p>(Se ha usado $\cos^2\theta = \frac{1}{2}(1+\cos 2\theta)$.)</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>6.10 Aplicaciones: longitud de arco</h2>
+
+<p><b>La longitud de una curva se obtiene sumando trocitos de longitud $\mathrm{d}s$, que por el teorema de Pitágoras cumplen $\mathrm{d}s^2 = \mathrm{d}x^2 + \mathrm{d}y^2$.</b> El resultado es una longitud, así que se expresa en unidades lineales ($\text{u}$), no en $\text{u}^2$.</p>
+<table>
+<thead><tr><th>Curva</th><th>Longitud</th></tr></thead>
+<tbody>
+<tr><td>Cartesianas: $y = f(x)$, $x\in[a,b]$</td><td>$L = \displaystyle\int_a^b\sqrt{1+\big(y'\big)^2}\dd x$</td></tr>
+<tr><td>Paramétricas: $x = f(t)$, $y = g(t)$, $t\in[t_1,t_2]$</td><td>$L = \displaystyle\int_{t_1}^{t_2}\sqrt{f'(t)^2 + g'(t)^2}\dd t$</td></tr>
+<tr><td>Polares: $\rho = f(\theta)$, $\theta\in[\theta_1,\theta_2]$</td><td>$L = \displaystyle\int_{\theta_1}^{\theta_2}\sqrt{\rho^2 + (\rho')^2}\dd\theta$</td></tr>
+</tbody>
+</table>
+
+<div class="ej"><span class="t">Ejemplo. Longitud de $y = 2x\sqrt{x}$ entre $x = 0$ y $x = 2$</span>
+<p>$y = 2x^{3/2}$, luego $y' = 3x^{1/2} = 3\sqrt{x}$ y $1 + (y')^2 = 1 + 9x$.</p>
+$$L = \int_0^2\sqrt{1+9x}\dd x = \frac{1}{9}\int_0^2 9(1+9x)^{1/2}\dd x = \frac{1}{9}\left[\frac{(1+9x)^{3/2}}{3/2}\right]_0^2 = \frac{2}{27}\Big[\sqrt{(1+9x)^3}\Big]_0^2 = \frac{2}{27}\left(19\sqrt{19} - 1\right) = \frac{38\sqrt{19}-2}{27}\ \text{u}\approx 6{,}06\ \text{u} .$$
+</div>
+
+<div class="ej"><span class="t">Ejemplo (polares). Longitud de la cardioide $\rho = 1+\cos\theta$</span>
+<p>$\rho' = -\sen\theta$, luego $\rho^2 + (\rho')^2 = 1 + 2\cos\theta + \cos^2\theta + \sen^2\theta = 2 + 2\cos\theta = 4\cos^2\frac{\theta}{2}$. Por simetría:</p>
+$$L = 2\int_0^{\pi}2\cos\frac{\theta}{2}\dd\theta = 2\Big[4\sen\frac{\theta}{2}\Big]_0^{\pi} = 8\ \text{u} .$$
+</div>
+
+<!-- ============================================================ -->
+<h2>6.11 Aplicaciones: volúmenes y superficies de revolución</h2>
+
+<p><b>Cuando una curva gira alrededor de un eje, se obtiene una superficie de revolución que encierra un volumen. El volumen se calcula sumando discos (o capas cilíndricas) y el área de la superficie, sumando bandas de radio $|y|$ y anchura $\mathrm{d}s$.</b></p>
+
+<h3>Cartesianas, $y = f(x)$</h3>
+<table>
+<thead><tr><th>Giro</th><th>Volumen</th><th>Superficie lateral</th></tr></thead>
+<tbody>
+<tr><td>alrededor del eje $X$, $x\in[a,b]$</td><td>$V_{OX} = \pi\displaystyle\int_a^b f(x)^2\dd x$</td><td>$S_{OX} = 2\pi\displaystyle\int_a^b f(x)\sqrt{1+f'(x)^2}\dd x$</td></tr>
+<tr><td>alrededor del eje $Y$, $0\leq a<b$</td><td>$V_{OY} = 2\pi\displaystyle\int_a^b x\,f(x)\dd x$</td><td>$S_{OY} = 2\pi\displaystyle\int_m^n g(y)\sqrt{1+g'(y)^2}\dd y$</td></tr>
+</tbody>
+</table>
+<p><b>Explicación.</b> En $V_{OX}$, cada rebanada de grosor $\mathrm{d}x$ es un disco de radio $f(x)$ y volumen $\pi f(x)^2\dd x$ (método de los discos). En $V_{OY}$, cada franja vertical de anchura $\mathrm{d}x$ a distancia $x$ del eje genera una capa cilíndrica de volumen $2\pi x\,f(x)\dd x$ (método de las capas); se supone $f\geq 0$. En $S_{OY}$ la curva se escribe como $x = g(y)$, $y\in[m,n]$; equivale a $2\pi\int_a^b x\sqrt{1+f'(x)^2}\dd x$. Si $f$ toma valores negativos, en las superficies se pone $|f(x)|$.</p>
+<p>Alternativa para $V_{OY}$ por discos horizontales: si la curva se escribe $x = g(y)$, entonces $V_{OY} = \pi\int_m^n g(y)^2\dd y$ (volumen del sólido formado al girar la región entre la curva y el eje $Y$).</p>
+
+<h3>Paramétricas, $x = f(t)$, $y = g(t)$</h3>
+<p>Se utilizan las fórmulas de las cartesianas sustituyendo $x$, $\mathrm{d}x = f'(t)\dd t$, $y$ y $\mathrm{d}s = \sqrt{f'(t)^2+g'(t)^2}\dd t$:</p>
+$$V_{OX} = \pi\int_{t_1}^{t_2} g(t)^2 f'(t)\dd t \quad(\text{en valor absoluto}), \qquad S_{OX} = 2\pi\int_{t_1}^{t_2} g(t)\sqrt{f'(t)^2+g'(t)^2}\dd t .$$
+
+<h3>Polares, $\rho = f(\theta)$ (giro alrededor del eje polar)</h3>
+$$V = \frac{2\pi}{3}\int_{\theta_1}^{\theta_2}\rho^3\sen\theta\dd\theta, \qquad S = 2\pi\int_{\theta_1}^{\theta_2}\rho\sen\theta\sqrt{\rho^2+(\rho')^2}\dd\theta .$$
+
+<div class="ej"><span class="t">Ejemplos</span>
+<p><i>Discos.</i> Al girar $y = \sqrt{x}$, $x\in[0,4]$, alrededor del eje $X$: $V = \pi\int_0^4 x\dd x = \pi\left[\frac{x^2}{2}\right]_0^4 = 8\pi\ \text{u}^3$.</p>
+<p><i>Capas.</i> Al girar la región bajo $y = x^2$, $x\in[0,1]$, alrededor del eje $Y$: $V = 2\pi\int_0^1 x\cdot x^2\dd x = 2\pi\cdot\frac{1}{4} = \frac{\pi}{2}\ \text{u}^3$.</p>
+<p><i>Comprobación con la esfera.</i> Al girar $y = \sqrt{r^2-x^2}$, $x\in[-r,r]$, alrededor del eje $X$: $V = \pi\int_{-r}^{r}(r^2-x^2)\dd x = \frac{4}{3}\pi r^3$. Como $f\sqrt{1+f'^2} = r$, la superficie es $S = 2\pi\int_{-r}^{r} r\dd x = 4\pi r^2$. En polares ($\rho = r$, $\theta\in[0,\pi]$): $V = \frac{2\pi}{3}r^3\int_0^{\pi}\sen\theta\dd\theta = \frac{4}{3}\pi r^3$.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>6.12 Funciones hiperbólicas</h2>
+
+<p><b>Las funciones hiperbólicas se definen con exponenciales y cumplen relaciones muy parecidas a las trigonométricas. Aparecen en cambios de variable ($x = a\sh t$, $x = a\ch t$) y en integrales con $\sqrt{x^2\pm a^2}$.</b></p>
+$$\ch x = \frac{e^x + e^{-x}}{2}, \qquad \sh x = \frac{e^x - e^{-x}}{2}, \qquad \th x = \frac{\sh x}{\ch x}$$
+<p><b>Derivadas:</b> $(\ch x)' = \sh x$, &nbsp; $(\sh x)' = \ch x$ (sin cambio de signo, a diferencia del coseno), &nbsp; $(\th x)' = \frac{1}{\ch^2 x}$.</p>
+<p><b>Relaciones:</b></p>
+$$\ch^2 x - \sh^2 x = 1, \qquad \ch^2 x = \frac{1}{2}\big(1 + \ch 2x\big), \qquad \sh^2 x = \frac{1}{2}\big(\ch 2x - 1\big), \qquad \sh 2x = 2\sh x\ch x, \qquad \ch 2x = \ch^2 x + \sh^2 x$$
+<p><b>Inversas</b> (se obtienen despejando la exponencial):</p>
+$$\argsh x = \ln\left(x + \sqrt{x^2+1}\right), \qquad \argch x = \ln\left(x + \sqrt{x^2-1}\right)\ (x\geq 1)$$
+<p>De ahí las inmediatas $\int\frac{\mathrm{d}x}{\sqrt{x^2+1}} = \argsh x + C$ y $\int\frac{\mathrm{d}x}{\sqrt{x^2-1}} = \argch x + C$ (para $x>1$), que coinciden con las de la tabla de ampliación de 6.1.</p>
+
+<!-- ============================================================ -->
+<h2>6.13 Estrategia: cómo atacar una integral</h2>
+
+<p><b>Antes de calcular, clasifica la integral. Este orden resuelve la gran mayoría de los ejercicios:</b></p>
+<ol>
+<li><b>Simplifica</b>: desarrolla, separa en sumas, simplifica potencias y raíces ($\frac{x^{1/2}}{x^{1/6}} = x^{1/3}$), usa propiedades de logaritmos y exponenciales ($e^{\ln x} = x$).</li>
+<li><b>¿Es inmediata?</b> Busca una función $u$ cuya derivada esté al lado (salvo constante): potencia, exponencial, logaritmo, trigonométrica, arcotangente, arcoseno.</li>
+<li><b>¿Es racional?</b> Divide si hace falta, factoriza el denominador, fracciones simples. Si hay factores cuadráticos repetidos, Hermite.</li>
+<li><b>¿Es un producto de funciones de distinto tipo, o $\ln x$, $\arcsen x$, $\arctg x$ solos?</b> Por partes (regla ALPES). Si reaparece la integral, despeja (cíclica).</li>
+<li><b>¿Es trigonométrica?</b> Paridad: impar en seno ($\cos x = t$), impar en coseno ($\sen x = t$), par ($\tg x = t$); potencias pares, reducción de grado; productos con distinto ángulo, producto a suma; si nada funciona, $\tg\frac{x}{2} = t$.</li>
+<li><b>¿Tiene raíces o exponenciales que molestan?</b> Cambio de variable: $x = t^m$, $t = e^x$, $x = a\sen t$, $x = a\tg t$…</li>
+<li><b>Comprueba derivando</b> el resultado (o, en una definida, con una estimación del área o una propiedad de simetría).</li>
+</ol>

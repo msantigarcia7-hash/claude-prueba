@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tema 6. Integrales</title>
+<!--KATEX-->
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<h1>Tema 6. Integrales</h1>
+<p class="subtitulo">Cálculo · Resumen detallado del tema y formulario final</p>
+
+<p><b>Contenido</b></p>
+<ol class="indice">
+  <li>Conceptos previos: primitiva e integral indefinida</li>
+  <li>Integrales inmediatas</li>
+  <li>Integración por partes</li>
+  <li>Integrales por partes que se repiten (cíclicas)</li>
+  <li>Integrales racionales: fracciones simples y método de Hermite</li>
+  <li>Integración por cambio de variable</li>
+  <li>Integrales trigonométricas</li>
+  <li>Fórmulas trigonométricas más importantes</li>
+  <li>Integral definida y regla de Barrow</li>
+  <li>Aplicaciones: áreas planas</li>
+  <li>Aplicaciones: longitud de arco</li>
+  <li>Aplicaciones: volúmenes y superficies de revolución</li>
+  <li>Funciones hiperbólicas</li>
+  <li>Estrategia: cómo atacar una integral</li>
+  <li>Formulario del tema</li>
+</ol>
+
+<p class="peq">Notación: en los apuntes se escribe $L$ para el logaritmo neperiano; aquí se escribe $\ln$. Las letras $u$ y $v$ representan funciones de $x$ (algo que «lleva $x$»), $u'$ su derivada, y $a$, $b$, $k$ son constantes.</p>
+
+<!-- ============================================================ -->
+<h2>6.0 Conceptos previos: primitiva e integral indefinida</h2>
+
+<p><b>Integrar es la operación inversa de derivar: dada una función $f$, se busca otra función $F$ cuya derivada sea $f$.</b></p>
+
+<div class="def"><b>Primitiva.</b> Sea $f$ una función definida en un intervalo $I$. Una función $F$ es una <i>primitiva</i> de $f$ en $I$ si $F$ es derivable en $I$ y
+$$F'(x) = f(x) \quad \text{para todo } x \in I.$$
+Ejemplo: $F(x) = x^3$ es primitiva de $f(x) = 3x^2$, porque $(x^3)' = 3x^2$. También lo son $x^3 + 5$ y $x^3 - \pi$.</div>
+
+<div class="def"><b>Integral indefinida.</b> Es el conjunto de <i>todas</i> las primitivas de $f$. Se escribe
+$$\int f(x)\dd x = F(x) + C, \qquad C \in \mathbb{R},$$
+donde $F$ es una primitiva cualquiera. La función $f$ se llama <i>integrando</i>, $\mathrm{d}x$ indica la variable de integración y $C$ es la <i>constante de integración</i>.</div>
+
+<p><b>Por qué aparece siempre $+C$.</b> Si $F$ y $G$ son dos primitivas de $f$ en un intervalo, entonces $(F-G)' = f - f = 0$, y una función con derivada nula en un intervalo es constante (consecuencia del teorema del valor medio). Por tanto, dos primitivas se diferencian solo en una constante, y basta conocer una para conocerlas todas.</p>
+
+<h3>Propiedades básicas (linealidad)</h3>
+$$\int \big(f(x) \pm g(x)\big)\dd x = \int f(x)\dd x \pm \int g(x)\dd x, \qquad \int k\, f(x)\dd x = k \int f(x)\dd x .$$
+<p>Consecuencia práctica muy usada en el tema: <b>una constante puede entrar y salir de la integral</b>. Por eso, si falta un número para tener «la derivada de dentro», se multiplica dentro y se divide fuera por ese número. Esto <b>solo se puede hacer con constantes</b>, nunca con expresiones que contengan $x$.</p>
+
+<p><b>Comprobación.</b> Toda integral indefinida se puede comprobar derivando el resultado: debe salir exactamente el integrando. Es la forma más rápida de detectar errores de signo o de constantes.</p>
+
+<div class="nota"><b>Nota.</b> Hay funciones continuas sencillas cuya primitiva no se puede expresar con funciones elementales, por ejemplo $e^{-x^2}$, $\dfrac{\sen x}{x}$ o $\sen(x^2)$. Si en un ejercicio aparece una de ellas tal cual, casi seguro hay un error en el enunciado o en un paso anterior.</div>
+
+<!-- ============================================================ -->
+<h2>6.1 Integrales inmediatas</h2>
+
+<p><b>Una integral es inmediata cuando el integrando es exactamente la derivada de una función conocida, normalmente gracias a la regla de la cadena.</b></p>
+
+<p>La regla de la cadena dice que $\big[F(u(x))\big]' = F'(u(x))\cdot u'(x)$. Leída al revés:
+$$\int F'(u)\cdot u'\dd x = F(u) + C .$$
+Esta es la idea de todo el apartado: <b>para usar una fórmula inmediata con una función $u$ dentro, necesito tener al lado la derivada $u'$</b> (salvo una constante, que se ajusta). En los apuntes se escribe $\mathrm{d}u$ en lugar de $u'\dd x$; es lo mismo, porque $\mathrm{d}u = u'\dd x$.</p>
+
+<h3>1) Polinomios</h3>
+<p>Se integra término a término: se aumenta un grado el exponente y se divide entre el nuevo exponente.</p>
+$$\int x^n \dd x = \frac{x^{n+1}}{n+1} + C \quad (n \neq -1)$$
+<div class="ej"><span class="t">Ejemplo</span>
+$$\int (x^3 + 5x^2 - 6x + 3)\dd x = \frac{x^4}{4} + \frac{5x^3}{3} - \frac{6x^2}{2} + 3x + C = \frac{x^4}{4} + \frac{5x^3}{3} - 3x^2 + 3x + C.$$
+</div>
+
+<h3>2) Integral de una potencia</h3>
+<p>Generaliza la anterior cuando la base es una función $u$. Necesito tener al lado la derivada de la base.</p>
+$$\int u^a \cdot u' \dd x = \frac{u^{a+1}}{a+1} + C \qquad (a \neq -1)$$
+<p>Sirve para cualquier exponente real distinto de $-1$: raíces (exponente fraccionario, $\sqrt[3]{u} = u^{1/3}$) y denominadores (exponente negativo, $\frac{1}{u^2} = u^{-2}$). El caso $a = -1$ es el logaritmo (apartado 4).</p>
+
+<div class="ej"><span class="t">Ejemplos (ajuste de constantes)</span>
+<p>$\displaystyle \int (x+1)^7\dd x = \frac{(x+1)^8}{8} + C$ &nbsp; (aquí $u' = 1$, no hay que ajustar nada).</p>
+<p>$\displaystyle \int (2x+1)^7\dd x = \frac{1}{2}\int (2x+1)^7\cdot 2\dd x = \frac{1}{2}\cdot\frac{(2x+1)^8}{8} + C = \frac{(2x+1)^8}{16} + C.$</p>
+<p>$\displaystyle \int (x^2+2x+7)^3 (x+1)\dd x = \frac{1}{2}\int (x^2+2x+7)^3 (x+1)\cdot 2\dd x = \frac{1}{2}\cdot\frac{(x^2+2x+7)^4}{4} + C.$</p>
+<p>$\displaystyle \int (x^3+7)^9 x^2\dd x = \frac{1}{3}\int (x^3+7)^9 \cdot 3x^2\dd x = \frac{1}{3}\cdot\frac{(x^3+7)^{10}}{10} + C.$</p>
+<p>$\displaystyle \int \sen^8(3x+9)\cos(3x+9)\dd x = \frac{1}{3}\int \big(\sen(3x+9)\big)^8\cos(3x+9)\cdot 3\dd x = \frac{1}{3}\cdot\frac{\sen^9(3x+9)}{9} + C.$</p>
+<p>$\displaystyle \int x\sqrt[3]{x^2+5}\dd x = \frac{1}{2}\int (x^2+5)^{1/3}\cdot 2x\dd x = \frac{1}{2}\cdot\frac{(x^2+5)^{4/3}}{4/3} + C = \frac{3}{8}(x^2+5)^{4/3} + C.$</p>
+<p>$\displaystyle \int \frac{2x+1}{\sqrt[3]{x^2+x+3}}\dd x = \int (2x+1)(x^2+x+3)^{-1/3}\dd x = \frac{(x^2+x+3)^{2/3}}{2/3} + C = \frac{3}{2}(x^2+x+3)^{2/3} + C.$</p>
+<p>$\displaystyle \int \frac{(\ln x)^7}{x}\dd x = \int (\ln x)^7\cdot\frac{1}{x}\dd x = \frac{(\ln x)^8}{8} + C$ &nbsp; (la base es $\ln x$ y su derivada $\frac{1}{x}$ está al lado).</p>
+</div>
+
+<h3>3) Exponenciales</h3>
+<p>Necesito tener al lado la derivada del exponente.</p>
+$$\int e^u\cdot u'\dd x = e^u + C, \qquad \int a^u\cdot u'\dd x = \frac{a^u}{\ln a} + C \quad (a>0,\ a\neq 1)$$
+<p>La segunda sale de la primera escribiendo $a^u = e^{u\ln a}$.</p>
+<div class="ej"><span class="t">Ejemplos</span>
+<p>$\displaystyle \int e^{3x+9}\dd x = \frac{1}{3}\int e^{3x+9}\cdot 3\dd x = \frac{1}{3}e^{3x+9} + C.$</p>
+<p>$\displaystyle \int e^{\sen(2x+5)}\cos(2x+5)\dd x = \frac{1}{2}\int e^{\sen(2x+5)}\cos(2x+5)\cdot 2\dd x = \frac{1}{2}e^{\sen(2x+5)} + C.$</p>
+<p>$\displaystyle \int 3^{3x^3+5}\, x^2\dd x = \frac{1}{9}\int 3^{3x^3+5}\cdot 9x^2\dd x = \frac{1}{9}\cdot\frac{3^{3x^3+5}}{\ln 3} + C.$</p>
+<p>$\displaystyle \int \frac{e^{\ln x}}{x}\dd x = \int e^{\ln x}\cdot\frac{1}{x}\dd x = e^{\ln x} + C = x + C.$ Fíjate en que $e^{\ln x} = x$, así que el integrando era simplemente $1$: conviene <b>simplificar antes de integrar</b>.</p>
+</div>
+
+<h3>4) Integrales que dan logaritmos</h3>
+<p>Cuando en el numerador está la derivada del denominador (salvo constante):</p>
+$$\int \frac{u'}{u}\dd x = \ln|u| + C$$
+<p>El valor absoluto es necesario porque $\ln u$ solo existe para $u>0$, mientras que $\frac{u'}{u}$ existe también para $u<0$; y se cumple $\big(\ln|u|\big)' = \frac{u'}{u}$ para todo $u\neq 0$. Si $u$ es siempre positiva (por ejemplo $x^2+1$), el valor absoluto se puede omitir.</p>
+<div class="ej"><span class="t">Ejemplos</span>
+<p>$\displaystyle \int \frac{\mathrm{d}x}{x} = \ln|x| + C.$</p>
+<p>$\displaystyle \int \frac{x}{x^2-7}\dd x = \frac{1}{2}\int \frac{2x}{x^2-7}\dd x = \frac{1}{2}\ln|x^2-7| + C.$</p>
+<p>$\displaystyle \int \tg x\dd x = \int\frac{\sen x}{\cos x}\dd x = -\int\frac{-\sen x}{\cos x}\dd x = -\ln|\cos x| + C.$ &nbsp; Análogamente, $\displaystyle\int \cotg x\dd x = \ln|\sen x| + C$.</p>
+<p>$\displaystyle \int \frac{\mathrm{d}x}{x\ln x} = \int\frac{1/x}{\ln x}\dd x = \ln|\ln x| + C.$</p>
+</div>
+
+<h3>5) Trigonométricas</h3>
+<p>Necesito tener al lado la derivada del ángulo.</p>
+$$\int \sen u\cdot u'\dd x = -\cos u + C, \qquad \int \cos u\cdot u'\dd x = \sen u + C$$
+$$\int (1+\tg^2 u)\,u'\dd x = \int \sec^2 u\cdot u'\dd x = \int \frac{u'}{\cos^2 u}\dd x = \tg u + C$$
+$$\int (1+\cotg^2 u)\,u'\dd x = \int \cosec^2 u\cdot u'\dd x = \int \frac{u'}{\sen^2 u}\dd x = -\cotg u + C$$
+<p>Las tres formas de la tercera fórmula son iguales porque $1+\tg^2 u = \frac{1}{\cos^2 u} = \sec^2 u$; y en la cuarta, $1+\cotg^2 u = \frac{1}{\sen^2 u} = \cosec^2 u$.</p>
+<div class="ej"><span class="t">Ejemplos</span>
+<p>$\displaystyle \int \sen(5x^4+2)\,x^3\dd x = \frac{1}{20}\int \sen(5x^4+2)\cdot 20x^3\dd x = -\frac{1}{20}\cos(5x^4+2) + C.$</p>
+<p>$\displaystyle \int \cos(3x-5)\dd x = \frac{1}{3}\int\cos(3x-5)\cdot 3\dd x = \frac{1}{3}\sen(3x-5) + C.$</p>
+<p>$\displaystyle \int \frac{\mathrm{d}x}{\cos^2(6x-1)} = \frac{1}{6}\int\frac{6\dd x}{\cos^2(6x-1)} = \frac{1}{6}\tg(6x-1) + C.$</p>
+<p>$\displaystyle \int \cosec^2(3x-5)\dd x = -\frac{1}{3}\int -\cosec^2(3x-5)\cdot 3\dd x = -\frac{1}{3}\cotg(3x-5) + C.$</p>
+</div>
+
+<h3>6) Arcotangente</h3>
+$$\int \frac{u'}{1+u^2}\dd x = \arctg u + C \qquad\text{y, en general,}\qquad \int \frac{u'}{a^2+u^2}\dd x = \frac{1}{a}\arctg\frac{u}{a} + C \quad (a>0)$$
+<p>La forma general se obtiene sacando $a^2$ factor común: $a^2+u^2 = a^2\big(1+(u/a)^2\big)$. Para reconocerla: denominador «número positivo + algo al cuadrado» y, en el numerador, la derivada de ese «algo».</p>
+<div class="ej"><span class="t">Ejemplos</span>
+<p>$\displaystyle \int\frac{\mathrm{d}x}{1+x^2} = \arctg x + C.$</p>
+<p>$\displaystyle \int\frac{x^3\dd x}{1+4x^8} = \frac{1}{8}\int\frac{8x^3\dd x}{1+(2x^4)^2} = \frac{1}{8}\arctg(2x^4) + C$ &nbsp; ($u = 2x^4$, $u' = 8x^3$).</p>
+<p>$\displaystyle \int\frac{x\dd x}{25+9x^4} = \frac{1}{25}\int\frac{x\dd x}{1+\left(\frac{3}{5}x^2\right)^2} = \frac{1}{25}\cdot\frac{5}{6}\int\frac{\frac{6}{5}x\dd x}{1+\left(\frac{3}{5}x^2\right)^2} = \frac{1}{30}\arctg\!\left(\frac{3}{5}x^2\right) + C.$</p>
+<p>Con la fórmula general es más directo: $u = 3x^2$, $u' = 6x$, $a = 5$, así que $\frac{1}{6}\cdot\frac{1}{5}\arctg\frac{3x^2}{5}$, el mismo resultado.</p>
+</div>
+
+<h3>7) Arcoseno</h3>
+$$\int \frac{u'}{\sqrt{1-u^2}}\dd x = \arcsen u + C \qquad\text{y, en general,}\qquad \int \frac{u'}{\sqrt{a^2-u^2}}\dd x = \arcsen\frac{u}{a} + C \quad (a>0)$$
+<p>Para reconocerla: raíz de «número positivo − algo al cuadrado» en el denominador y la derivada de ese «algo» en el numerador. También se puede escribir $\int\frac{-u'}{\sqrt{1-u^2}}\dd x = \arccos u + C$; es equivalente, porque $\arccos u = \frac{\pi}{2} - \arcsen u$ y la diferencia queda absorbida en la constante.</p>
+<div class="ej"><span class="t">Ejemplos</span>
+<p>$\displaystyle \int\frac{x\dd x}{\sqrt{1-16x^4}} = \frac{1}{8}\int\frac{8x\dd x}{\sqrt{1-(4x^2)^2}} = \frac{1}{8}\arcsen(4x^2) + C$ &nbsp; ($u = 4x^2$, $u' = 8x$; hace falta la $x$ del numerador, ver la nota final).</p>
+<p>$\displaystyle \int\frac{x^2\dd x}{\sqrt{9-64x^6}} = \int\frac{x^2\dd x}{3\sqrt{1-\left(\frac{8}{3}x^3\right)^2}} = \frac{1}{3}\cdot\frac{1}{8}\int\frac{8x^2\dd x}{\sqrt{1-\left(\frac{8}{3}x^3\right)^2}} = \frac{1}{24}\arcsen\!\left(\frac{8}{3}x^3\right) + C.$</p>
+<p>Con la fórmula general: $u = 8x^3$, $u' = 24x^2$, $a = 3$, luego $\frac{1}{24}\arcsen\frac{8x^3}{3}$.</p>
+</div>
+
+<h3>8) Ampliación: otras inmediatas que aparecen a menudo</h3>
+<p>No están en los apuntes, pero salen al final de muchos ejercicios (sobre todo tras un cambio de variable) y conviene reconocerlas.</p>
+<table>
+<thead><tr><th>Integral</th><th>Resultado</th></tr></thead>
+<tbody>
+<tr><td>$\displaystyle\int \frac{u'}{a^2-u^2}\dd x$</td><td>$\displaystyle\frac{1}{2a}\ln\left|\frac{a+u}{a-u}\right| + C$ &nbsp; (por fracciones simples)</td></tr>
+<tr><td>$\displaystyle\int \frac{u'}{\sqrt{u^2+a^2}}\dd x$</td><td>$\ln\left|u+\sqrt{u^2+a^2}\right| + C$</td></tr>
+<tr><td>$\displaystyle\int \frac{u'}{\sqrt{u^2-a^2}}\dd x$</td><td>$\ln\left|u+\sqrt{u^2-a^2}\right| + C$</td></tr>
+<tr><td>$\int \sec u\,\tg u\cdot u'\dd x$</td><td>$\sec u + C$</td></tr>
+<tr><td>$\int \sec u\cdot u'\dd x$</td><td>$\ln\left|\sec u+\tg u\right| + C$</td></tr>
+<tr><td>$\int \cosec u\cdot u'\dd x$</td><td>$\ln\left|\tg\frac{u}{2}\right| + C$</td></tr>
+<tr><td>$\int \ch u\cdot u'\dd x$, &nbsp; $\int \sh u\cdot u'\dd x$</td><td>$\sh u + C$, &nbsp; $\ch u + C$ &nbsp; (ver 6.12)</td></tr>
+</tbody>
+</table>
+
+<div class="nota"><b>Errores típicos.</b> (1) Ajustar con una expresión que lleva $x$: $\int e^{x^2}\dd x \neq \frac{1}{2x}\int e^{x^2}\,2x\dd x$; eso no es válido. (2) Olvidar el valor absoluto del logaritmo. (3) Aplicar la fórmula de la potencia con $a=-1$: $\int u^{-1}u'\dd x$ es un logaritmo, no $\frac{u^0}{0}$.</div>
+
+<!-- ============================================================ -->
+<h2>6.2 Integración por partes</h2>
+
+<p><b>Se utiliza cuando el integrando es un producto de funciones de distinto tipo (polinomios, logaritmos, exponenciales, trigonométricas, trigonométricas inversas…) y también para integrar solas $\ln x$, $\arcsen x$ o $\arctg x$.</b></p>
+
+<p><b>De dónde sale la fórmula.</b> Si $u$ y $v$ son derivables con derivada continua, la regla del producto dice $(u\,v)' = u'v + u\,v'$. Integrando los dos miembros, $u\,v = \int u'v\dd x + \int u\,v'\dd x$, y despejando:</p>
+$$\int u\dd v = u\,v - \int v\dd u, \qquad\text{donde}\quad \mathrm{d}u = u'\dd x,\quad \mathrm{d}v = v'\dd x.$$
+
+<p><b>Procedimiento.</b> Una parte del integrando se llama $u$ y se <i>deriva</i>; el resto (incluido el $\mathrm{d}x$) se llama $\mathrm{d}v$ y se <i>integra</i>:</p>
+$$u \;\xrightarrow{\ \text{derivo}\ }\; \mathrm{d}u = u'\dd x, \qquad \mathrm{d}v \;\xrightarrow{\ \text{integro}\ }\; v .$$
+<p>La elección es buena si la nueva integral $\int v\dd u$ es más sencilla que la original. Al calcular $v$ no hace falta poner constante.</p>
+
+<p><b>Regla ALPES para elegir $u$.</b> Cuanto más arriba esté en la lista, antes hay que llamarla $u$:</p>
+<table>
+<thead><tr><th>Letra</th><th>Tipo de función</th><th>Ejemplos</th></tr></thead>
+<tbody>
+<tr><td>A</td><td>Arco (trigonométricas inversas)</td><td>$\arcsen x$, $\arctg x$</td></tr>
+<tr><td>L</td><td>Logarítmicas</td><td>$\ln x$, $\ln(x^2+1)$</td></tr>
+<tr><td>P</td><td>Polinómicas</td><td>$x$, $x^2-3x$</td></tr>
+<tr><td>E</td><td>Exponenciales</td><td>$e^x$, $2^x$</td></tr>
+<tr><td>S</td><td>Seno y coseno</td><td>$\sen x$, $\cos 3x$</td></tr>
+</tbody>
+</table>
+<p>El motivo: las funciones de arriba se simplifican al derivar ($\ln x \to \frac{1}{x}$, $\arctg x \to \frac{1}{1+x^2}$, un polinomio baja de grado), mientras que las de abajo son fáciles de integrar y no empeoran ($e^x$ y $\sen x$ se integran sin problema).</p>
+
+<div class="ej"><span class="t">Ejemplo 1. $\int x\,e^x\dd x$</span>
+<p>$u = x \to \mathrm{d}u = \mathrm{d}x$; &nbsp; $\mathrm{d}v = e^x\dd x \to v = e^x$.</p>
+$$\int x\,e^x\dd x = x\,e^x - \int e^x\dd x = x\,e^x - e^x + C = e^x(x-1) + C.$$
+<p>Comprobación: $\big(e^x(x-1)\big)' = e^x(x-1) + e^x = x\,e^x$.</p>
+</div>
+
+<div class="ej"><span class="t">Ejemplo 2. $\int x^2 e^x\dd x$ (partes dos veces)</span>
+<p>Normalmente hay que aplicar partes <b>tantas veces como el grado del polinomio</b>, porque cada vez el polinomio baja un grado.</p>
+<p>1.ª vez: $u = x^2 \to \mathrm{d}u = 2x\dd x$; $\mathrm{d}v = e^x\dd x \to v = e^x$. &nbsp; 2.ª vez: $u = 2x \to \mathrm{d}u = 2\dd x$; $\mathrm{d}v = e^x\dd x \to v = e^x$.</p>
+$$\int x^2e^x\dd x = x^2e^x - \int 2x\,e^x\dd x = x^2e^x - \Big[2x\,e^x - \int 2e^x\dd x\Big] = x^2e^x - 2xe^x + 2e^x + C = e^x(x^2-2x+2) + C.$$
+</div>
+
+<div class="ej"><span class="t">Ejemplo 3. $\int \ln x\dd x$ y $\int x^2\ln x\dd x$</span>
+<p>Para $\ln x$ solo: $u = \ln x \to \mathrm{d}u = \frac{1}{x}\dd x$; $\mathrm{d}v = \mathrm{d}x \to v = x$.</p>
+$$\int \ln x\dd x = x\ln x - \int x\cdot\frac{1}{x}\dd x = x\ln x - x + C = x(\ln x - 1) + C.$$
+<p>Para $x^2\ln x$: $u = \ln x \to \mathrm{d}u = \frac{1}{x}\dd x$; $\mathrm{d}v = x^2\dd x \to v = \frac{x^3}{3}$.</p>
+$$\int x^2\ln x\dd x = \frac{x^3}{3}\ln x - \int\frac{x^3}{3}\cdot\frac{1}{x}\dd x = \frac{x^3}{3}\ln x - \frac{x^3}{9} + C = \frac{x^3}{3}\left(\ln x - \frac{1}{3}\right) + C.$$
+</div>
+
+<div class="ej"><span class="t">Ejemplo 4. $\int \arcsen x\dd x$ y $\int \arctg x\dd x$</span>
+<p>$u = \arcsen x \to \mathrm{d}u = \frac{\mathrm{d}x}{\sqrt{1-x^2}}$; $\mathrm{d}v = \mathrm{d}x \to v = x$. La integral que queda es de tipo potencia:</p>
+$$\int\arcsen x\dd x = x\arcsen x - \int\frac{x\dd x}{\sqrt{1-x^2}} = x\arcsen x + \frac{1}{2}\int(-2x)(1-x^2)^{-1/2}\dd x = x\arcsen x + \sqrt{1-x^2} + C.$$
+<p>$u = \arctg x \to \mathrm{d}u = \frac{\mathrm{d}x}{1+x^2}$; $\mathrm{d}v = \mathrm{d}x \to v = x$. La integral que queda es logarítmica:</p>
+$$\int\arctg x\dd x = x\arctg x - \int\frac{x\dd x}{1+x^2} = x\arctg x - \frac{1}{2}\ln(1+x^2) + C.$$
+</div>
+
+<h3>Truco: método de la tabla (partes reiteradas)</h3>
+<p>Para integrales del tipo $\int P(x)\,e^{ax}\dd x$, $\int P(x)\sen(ax)\dd x$ o $\int P(x)\cos(ax)\dd x$, con $P$ polinomio, las partes sucesivas se pueden organizar en una tabla: en una columna se deriva $P$ hasta llegar a $0$; en otra se integra la otra función las mismas veces. El resultado es la suma de los productos «en diagonal» con signos alternos $+,-,+,-,\dots$</p>
+<div class="ej"><span class="t">Ejemplo. $\int x^3e^{2x}\dd x$</span>
+<table>
+<thead><tr><th>Signo</th><th>Derivo $P$</th><th>Integro $e^{2x}$</th></tr></thead>
+<tbody>
+<tr><td>$+$</td><td>$x^3$</td><td>$e^{2x}$</td></tr>
+<tr><td>$-$</td><td>$3x^2$</td><td>$\frac{1}{2}e^{2x}$</td></tr>
+<tr><td>$+$</td><td>$6x$</td><td>$\frac{1}{4}e^{2x}$</td></tr>
+<tr><td>$-$</td><td>$6$</td><td>$\frac{1}{8}e^{2x}$</td></tr>
+<tr><td></td><td>$0$</td><td>$\frac{1}{16}e^{2x}$</td></tr>
+</tbody>
+</table>
+$$\int x^3e^{2x}\dd x = x^3\cdot\frac{e^{2x}}{2} - 3x^2\cdot\frac{e^{2x}}{4} + 6x\cdot\frac{e^{2x}}{8} - 6\cdot\frac{e^{2x}}{16} + C = e^{2x}\left(\frac{x^3}{2} - \frac{3x^2}{4} + \frac{3x}{4} - \frac{3}{8}\right) + C.$$
+</div>
+
+<div class="nota"><b>En integrales definidas.</b> La fórmula es $\displaystyle\int_a^b u\dd v = \big[u\,v\big]_a^b - \int_a^b v\dd u$: el término $u\,v$ también se evalúa entre los límites.</div>
+
+<!-- ============================================================ -->
+<h2>6.3 Integrales por partes que se repiten (cíclicas)</h2>
+
+<p><b>En algunas integrales, al aplicar partes dos veces vuelve a aparecer la integral original. Entonces no se sigue integrando: se llama $I$ a la integral y se despeja de la ecuación obtenida.</b> Es lo típico de $\int e^{ax}\sen(bx)\dd x$ y $\int e^{ax}\cos(bx)\dd x$, porque ni la exponencial ni el seno/coseno «desaparecen» al derivar.</p>
+
+<div class="ej"><span class="t">Ejemplo. $I = \int e^x\sen x\dd x$</span>
+<p>1.ª vez: $u = e^x \to \mathrm{d}u = e^x\dd x$; $\mathrm{d}v = \sen x\dd x \to v = -\cos x$.</p>
+$$I = -e^x\cos x - \int e^x(-\cos x)\dd x = -e^x\cos x + \int e^x\cos x\dd x .$$
+<p>2.ª vez (misma elección, $u$ = exponencial): $u = e^x \to \mathrm{d}u = e^x\dd x$; $\mathrm{d}v = \cos x\dd x \to v = \sen x$.</p>
+$$I = -e^x\cos x + \Big[e^x\sen x - \int e^x\sen x\dd x\Big] = -e^x\cos x + e^x\sen x - I .$$
+<p>Ha vuelto a aparecer $I$. Despejando: $2I = e^x(\sen x - \cos x)$, luego</p>
+$$I = \int e^x\sen x\dd x = \frac{1}{2}e^x(\sen x - \cos x) + C .$$
+</div>
+
+<div class="nota"><b>Muy importante.</b> En la segunda integración por partes hay que llamar $u$ al <b>mismo tipo de función</b> que en la primera (aquí, la exponencial las dos veces). Si en la segunda se cambia la elección, se deshace lo hecho y se llega a la identidad inútil $I = I$. La constante $C$ se añade al final, después de despejar.</div>
+
+<p><b>Fórmulas generales</b> (útiles para comprobar resultados; $a$ y $b$ no nulos):</p>
+$$\int e^{ax}\sen(bx)\dd x = \frac{e^{ax}\big(a\sen(bx) - b\cos(bx)\big)}{a^2+b^2} + C, \qquad \int e^{ax}\cos(bx)\dd x = \frac{e^{ax}\big(a\cos(bx) + b\sen(bx)\big)}{a^2+b^2} + C .$$
+<p>Con $a = b = 1$ la primera da $\frac{1}{2}e^x(\sen x - \cos x)$, como en el ejemplo.</p>

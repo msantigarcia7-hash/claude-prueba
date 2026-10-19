@@ -1,0 +1,44 @@
+/* Estilo minimalista: fondo blanco, texto negro, solo líneas horizontales finas */
+@page {
+  size: A4;
+  margin: 20mm 20mm 20mm 20mm;
+  @bottom-center { content: counter(page); font-family: "Inter", sans-serif; font-size: 8.5pt; color: #666; }
+}
+html { -webkit-print-color-adjust: exact; }
+body {
+  background: #fff; color: #000;
+  font-family: "Inter", "Liberation Sans", sans-serif;
+  font-size: 10pt; line-height: 1.55;
+  margin: 0;
+}
+h1 { font-size: 20pt; font-weight: 700; margin: 0 0 4pt 0; }
+.subtitulo { font-size: 10.5pt; color: #444; margin: 0 0 18pt 0; }
+h2 { font-size: 14pt; font-weight: 700; margin: 22pt 0 8pt 0; padding-bottom: 3pt; border-bottom: 1px solid #ccc; break-after: avoid; }
+h3 { font-size: 11.5pt; font-weight: 700; margin: 16pt 0 5pt 0; break-after: avoid; }
+h4 { font-size: 10pt; font-weight: 700; margin: 12pt 0 3pt 0; break-after: avoid; }
+p { margin: 0 0 7pt 0; text-align: left; }
+ul, ol { margin: 0 0 8pt 0; padding-left: 18pt; }
+li { margin-bottom: 3pt; }
+.salto { break-before: page; }
+
+/* Tablas: solo líneas horizontales */
+table { border-collapse: collapse; width: 100%; margin: 6pt 0 12pt 0; font-size: 9.5pt; break-inside: auto; }
+th { text-align: left; font-weight: 700; padding: 6pt 8pt 6pt 0; border-bottom: 1.5px solid #555; vertical-align: bottom; }
+td { text-align: left; padding: 7pt 8pt 7pt 0; border-bottom: 1px solid #ddd; vertical-align: middle; }
+tr { break-inside: avoid; }
+thead { display: table-header-group; }
+.katex { font-size: 1.08em; }
+td .katex, th .katex { white-space: nowrap; }
+.katex-display { margin: 6pt 0; overflow: visible; }
+
+/* Ejemplos y notas: sin recuadros ni colores, solo sangría */
+.ej { margin: 8pt 0 12pt 0; padding-left: 12pt; }
+.ej > .t { font-weight: 700; display: block; margin-bottom: 3pt; }
+.ej p { margin-bottom: 4pt; }
+.def { margin: 6pt 0 10pt 0; }
+.def > b:first-child { font-weight: 700; }
+.nota { font-size: 9.5pt; margin: 6pt 0 10pt 0; }
+.nota > b:first-child { font-weight: 700; }
+.indice { columns: 2; column-gap: 24pt; font-size: 9.5pt; margin-bottom: 8pt; }
+.indice li { break-inside: avoid; }
+.peq { font-size: 9pt; color: #333; }

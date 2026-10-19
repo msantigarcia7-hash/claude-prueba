@@ -1,0 +1,165 @@
+
+<!-- ============================================================ -->
+<h2 class="salto">6.14 Formulario del tema</h2>
+<p class="peq">$u = u(x)$ es una función, $u'$ su derivada, $a$, $b$, $k$ constantes. Todas las integrales indefinidas llevan $+\,C$.</p>
+
+<h3>F1. Propiedades</h3>
+<table>
+<thead><tr><th>Propiedad</th><th>Fórmula</th></tr></thead>
+<tbody>
+<tr><td>Linealidad</td><td>$\int(\alpha f\pm\beta g)\dd x = \alpha\int f\dd x\pm\beta\int g\dd x$</td></tr>
+<tr><td>Constantes</td><td>$\int k\,f\dd x = k\int f\dd x$ &nbsp; (solo constantes, nunca $x$)</td></tr>
+<tr><td>Comprobación</td><td>$\left(\int f\dd x\right)' = f$</td></tr>
+</tbody>
+</table>
+
+<h3>F2. Integrales inmediatas</h3>
+<table>
+<thead><tr><th>Tipo</th><th>Integral</th><th>Resultado</th></tr></thead>
+<tbody>
+<tr><td>Polinomio</td><td>$\int x^n\dd x$ &nbsp; $(n\neq -1)$</td><td>$\dfrac{x^{n+1}}{n+1}$</td></tr>
+<tr><td>Potencia</td><td>$\int u^a\,u'\dd x$ &nbsp; $(a\neq -1)$</td><td>$\dfrac{u^{a+1}}{a+1}$</td></tr>
+<tr><td>Logaritmo</td><td>$\displaystyle\int\frac{u'}{u}\dd x$</td><td>$\ln|u|$</td></tr>
+<tr><td>Exponencial</td><td>$\int e^u\,u'\dd x$</td><td>$e^u$</td></tr>
+<tr><td>Exponencial base $a$</td><td>$\int a^u\,u'\dd x$</td><td>$\dfrac{a^u}{\ln a}$</td></tr>
+<tr><td>Seno</td><td>$\int\sen u\cdot u'\dd x$</td><td>$-\cos u$</td></tr>
+<tr><td>Coseno</td><td>$\int\cos u\cdot u'\dd x$</td><td>$\sen u$</td></tr>
+<tr><td>Tangente</td><td>$\int(1+\tg^2u)\,u'\dd x = \displaystyle\int\frac{u'}{\cos^2u}\dd x$</td><td>$\tg u$</td></tr>
+<tr><td>Cotangente</td><td>$\int(1+\cotg^2u)\,u'\dd x = \displaystyle\int\frac{u'}{\sen^2u}\dd x$</td><td>$-\cotg u$</td></tr>
+<tr><td>$\tg$ y $\cotg$ solas</td><td>$\int\tg u\cdot u'\dd x$, &nbsp; $\int\cotg u\cdot u'\dd x$</td><td>$-\ln|\cos u|$, &nbsp; $\ln|\sen u|$</td></tr>
+<tr><td>Arcotangente</td><td>$\displaystyle\int\frac{u'}{1+u^2}\dd x$; &nbsp; $\displaystyle\int\frac{u'}{a^2+u^2}\dd x$</td><td>$\arctg u$; &nbsp; $\dfrac{1}{a}\arctg\dfrac{u}{a}$</td></tr>
+<tr><td>Arcoseno</td><td>$\displaystyle\int\frac{u'}{\sqrt{1-u^2}}\dd x$; &nbsp; $\displaystyle\int\frac{u'}{\sqrt{a^2-u^2}}\dd x$</td><td>$\arcsen u$; &nbsp; $\arcsen\dfrac{u}{a}$</td></tr>
+<tr><td>Arcocoseno</td><td>$\displaystyle\int\frac{-u'}{\sqrt{1-u^2}}\dd x$</td><td>$\arccos u$</td></tr>
+<tr><td>Logaritmo con $a^2-u^2$</td><td>$\displaystyle\int\frac{u'}{a^2-u^2}\dd x$</td><td>$\dfrac{1}{2a}\ln\left|\dfrac{a+u}{a-u}\right|$</td></tr>
+<tr><td>Raíz de $u^2\pm a^2$</td><td>$\displaystyle\int\frac{u'}{\sqrt{u^2\pm a^2}}\dd x$</td><td>$\ln\left|u+\sqrt{u^2\pm a^2}\right|$</td></tr>
+<tr><td>Secante, cosecante</td><td>$\int\sec u\cdot u'\dd x$, &nbsp; $\int\cosec u\cdot u'\dd x$</td><td>$\ln|\sec u+\tg u|$, &nbsp; $\ln\left|\tg\frac{u}{2}\right|$</td></tr>
+<tr><td>Hiperbólicas</td><td>$\int\ch u\cdot u'\dd x$, &nbsp; $\int\sh u\cdot u'\dd x$</td><td>$\sh u$, &nbsp; $\ch u$</td></tr>
+</tbody>
+</table>
+
+<h3>F3. Integración por partes</h3>
+<table>
+<thead><tr><th>Concepto</th><th>Fórmula o regla</th></tr></thead>
+<tbody>
+<tr><td>Fórmula</td><td>$\int u\dd v = u\,v - \int v\dd u$ &nbsp; ($u$ se deriva, $\mathrm{d}v$ se integra)</td></tr>
+<tr><td>Definida</td><td>$\int_a^b u\dd v = [u\,v]_a^b - \int_a^b v\dd u$</td></tr>
+<tr><td>Elección de $u$ (ALPES)</td><td>Arcos → Logaritmos → Polinomios → Exponenciales → Senos/cosenos</td></tr>
+<tr><td>Polinomio × exp/trig</td><td>partes tantas veces como el grado (o método de la tabla)</td></tr>
+<tr><td>Cíclicas</td><td>al reaparecer $I$: despejar; mantener el mismo tipo de $u$ las dos veces</td></tr>
+<tr><td>$\int e^{ax}\sen bx\dd x$</td><td>$\dfrac{e^{ax}(a\sen bx - b\cos bx)}{a^2+b^2}$</td></tr>
+<tr><td>$\int e^{ax}\cos bx\dd x$</td><td>$\dfrac{e^{ax}(a\cos bx + b\sen bx)}{a^2+b^2}$</td></tr>
+<tr><td>Resultados frecuentes</td><td>$\int\ln x\dd x = x\ln x - x$; &nbsp; $\int\arctg x\dd x = x\arctg x - \frac{1}{2}\ln(1+x^2)$; &nbsp; $\int\arcsen x\dd x = x\arcsen x + \sqrt{1-x^2}$</td></tr>
+</tbody>
+</table>
+
+<h3>F4. Integrales racionales $\int\frac{P(x)}{Q(x)}\dd x$</h3>
+<table>
+<thead><tr><th>Paso o caso</th><th>Qué se hace</th><th>Resultado</th></tr></thead>
+<tbody>
+<tr><td>$\operatorname{grado}P\geq\operatorname{grado}Q$</td><td>dividir: $\frac{P}{Q} = C(x) + \frac{R(x)}{Q(x)}$</td><td>polinomio + racional propia</td></tr>
+<tr><td>Raíz real simple $a$</td><td>$\dfrac{A}{x-a}$</td><td>$A\ln|x-a|$</td></tr>
+<tr><td>Raíz real múltiple $a$ (orden $n$)</td><td>$\dfrac{A_1}{x-a}+\dots+\dfrac{A_n}{(x-a)^n}$</td><td>$\displaystyle\int\frac{A}{(x-a)^k}\dd x = \frac{-A}{(k-1)(x-a)^{k-1}}$</td></tr>
+<tr><td>Complejas simples</td><td>$\dfrac{Mx+N}{x^2+px+q}$: 1.º logaritmo, 2.º arcotangente</td><td>$\ln$ + $\arctg$</td></tr>
+<tr><td>Completar cuadrado</td><td>$x^2+px+q = \left(x+\frac{p}{2}\right)^2 + k^2$, &nbsp; $k^2 = q-\frac{p^2}{4}$</td><td>$\displaystyle\int\frac{\mathrm{d}x}{(x+\frac{p}{2})^2+k^2} = \frac{1}{k}\arctg\frac{x+\frac{p}{2}}{k}$</td></tr>
+<tr><td>Fórmula general</td><td colspan="2">$\displaystyle\int\frac{Mx+N}{x^2+px+q}\dd x = \frac{M}{2}\ln(x^2+px+q) + \frac{2N-Mp}{\sqrt{4q-p^2}}\arctg\frac{2x+p}{\sqrt{4q-p^2}}$</td></tr>
+<tr><td>Complejas múltiples (Hermite)</td><td colspan="2">$\displaystyle\int\frac{P}{Q}\dd x = \frac{N(x)}{D(x)} + \int\frac{R(x)}{Q^*(x)}\dd x$; &nbsp; $D$: cada factor de $Q$ con un grado menos; $Q^* = Q/D$; $\operatorname{grado}N<\operatorname{grado}D$. Derivar, multiplicar por $Q$ e igualar coeficientes.</td></tr>
+<tr><td>Reducción</td><td colspan="2">$I_k = \displaystyle\int\frac{\mathrm{d}x}{(1+x^2)^k}$: &nbsp; $I_{k+1} = \dfrac{x}{2k(1+x^2)^k} + \dfrac{2k-1}{2k}I_k$, &nbsp; $I_1 = \arctg x$</td></tr>
+</tbody>
+</table>
+
+<h3>F5. Cambios de variable</h3>
+<table>
+<thead><tr><th>Si aparece</th><th>Cambio</th><th>Relaciones</th></tr></thead>
+<tbody>
+<tr><td>$\sqrt[n_1]{x},\dots,\sqrt[n_k]{x}$</td><td>$x = t^m$, $m = \operatorname{mcm}(n_i)$</td><td>$\mathrm{d}x = m\,t^{m-1}\dd t$</td></tr>
+<tr><td>$e^x$</td><td>$t = e^x$</td><td>$\mathrm{d}x = \dfrac{\mathrm{d}t}{t}$, &nbsp; $e^{-x} = \dfrac{1}{t}$</td></tr>
+<tr><td>$\ln x$</td><td>$t = \ln x$</td><td>$\mathrm{d}t = \dfrac{\mathrm{d}x}{x}$</td></tr>
+<tr><td>$\sqrt{a^2-x^2}$</td><td>$x = a\sen t$</td><td>$\mathrm{d}x = a\cos t\dd t$, &nbsp; $\sqrt{a^2-x^2} = a\cos t$</td></tr>
+<tr><td>$\sqrt{a^2+x^2}$</td><td>$x = a\tg t$</td><td>$\mathrm{d}x = \dfrac{a\dd t}{\cos^2 t}$, &nbsp; $\sqrt{a^2+x^2} = \dfrac{a}{\cos t}$</td></tr>
+<tr><td>$\sqrt{x^2-a^2}$</td><td>$x = \dfrac{a}{\cos t}$ &nbsp; (o $x = a\ch t$)</td><td>$\sqrt{x^2-a^2} = a\tg t$ &nbsp; (o $a\sh t$)</td></tr>
+<tr><td>Definida</td><td colspan="2">se cambian los límites: $\int_a^b f(x)\dd x = \int_\alpha^\beta f(g(t))\,g'(t)\dd t$, con $g(\alpha) = a$, $g(\beta) = b$</td></tr>
+</tbody>
+</table>
+<p>Útil: $\displaystyle\int\sqrt{a^2-x^2}\dd x = \frac{a^2}{2}\arcsen\frac{x}{a} + \frac{x\sqrt{a^2-x^2}}{2}$.</p>
+
+<h3>F6. Integrales trigonométricas</h3>
+<table>
+<thead><tr><th>Caso</th><th>Cambio</th><th>Sustituciones</th></tr></thead>
+<tbody>
+<tr><td>Impar en $\sen$: $R(-\sen,\cos) = -R$</td><td>$\cos x = t$</td><td>$\sen x = \sqrt{1-t^2}$, &nbsp; $\mathrm{d}x = \dfrac{-\mathrm{d}t}{\sqrt{1-t^2}}$</td></tr>
+<tr><td>Impar en $\cos$: $R(\sen,-\cos) = -R$</td><td>$\sen x = t$</td><td>$\cos x = \sqrt{1-t^2}$, &nbsp; $\mathrm{d}x = \dfrac{\mathrm{d}t}{\sqrt{1-t^2}}$</td></tr>
+<tr><td>Par: $R(-\sen,-\cos) = R$</td><td>$\tg x = t$</td><td>$\sen x = \dfrac{t}{\sqrt{1+t^2}}$, &nbsp; $\cos x = \dfrac{1}{\sqrt{1+t^2}}$, &nbsp; $\mathrm{d}x = \dfrac{\mathrm{d}t}{1+t^2}$</td></tr>
+<tr><td>General (siempre vale)</td><td>$\tg\frac{x}{2} = t$</td><td>$\sen x = \dfrac{2t}{1+t^2}$, &nbsp; $\cos x = \dfrac{1-t^2}{1+t^2}$, &nbsp; $\mathrm{d}x = \dfrac{2\dd t}{1+t^2}$</td></tr>
+<tr><td>Potencias pares</td><td colspan="2">$\sen^2 x = \frac{1}{2}(1-\cos 2x)$, &nbsp; $\cos^2 x = \frac{1}{2}(1+\cos 2x)$</td></tr>
+<tr><td>Productos, ángulos distintos</td><td colspan="2">producto → suma (ver F7)</td></tr>
+<tr><td>Resultados frecuentes</td><td colspan="2">$\int\sen^2x\dd x = \frac{x}{2} - \frac{\sen 2x}{4}$; &nbsp; $\int\cos^2x\dd x = \frac{x}{2} + \frac{\sen 2x}{4}$; &nbsp; $\int\tg^2x\dd x = \tg x - x$</td></tr>
+</tbody>
+</table>
+
+<h3>F7. Fórmulas trigonométricas</h3>
+<table>
+<thead><tr><th>Grupo</th><th>Fórmulas</th></tr></thead>
+<tbody>
+<tr><td>Fundamentales</td><td>$\sen^2x+\cos^2x = 1$; &nbsp; $1+\tg^2x = \dfrac{1}{\cos^2x}$; &nbsp; $1+\cotg^2x = \dfrac{1}{\sen^2x}$</td></tr>
+<tr><td>Suma de ángulos</td><td>$\sen(a\pm b) = \sen a\cos b\pm\cos a\sen b$; &nbsp; $\cos(a\pm b) = \cos a\cos b\mp\sen a\sen b$</td></tr>
+<tr><td>Ángulo doble</td><td>$\sen 2x = 2\sen x\cos x$; &nbsp; $\cos 2x = \cos^2x-\sen^2x = 2\cos^2x-1 = 1-2\sen^2x$</td></tr>
+<tr><td>Reducción de grado</td><td>$\sen^2\frac{\square}{2} = \frac{1}{2}(1-\cos\square)$; &nbsp; $\cos^2\frac{\square}{2} = \frac{1}{2}(1+\cos\square)$</td></tr>
+<tr><td>Producto a suma</td><td>$\sen A\sen B = \frac{1}{2}[\cos(A-B)-\cos(A+B)]$</td></tr>
+<tr><td></td><td>$\sen A\cos B = \frac{1}{2}[\sen(A+B)+\sen(A-B)]$</td></tr>
+<tr><td></td><td>$\cos A\cos B = \frac{1}{2}[\cos(A-B)+\cos(A+B)]$</td></tr>
+<tr><td>Suma a producto</td><td>$\sen A\pm\sen B = 2\sen\frac{A\pm B}{2}\cos\frac{A\mp B}{2}$</td></tr>
+<tr><td></td><td>$\cos A+\cos B = 2\cos\frac{A+B}{2}\cos\frac{A-B}{2}$; &nbsp; $\cos A-\cos B = -2\sen\frac{A+B}{2}\sen\frac{A-B}{2}$</td></tr>
+</tbody>
+</table>
+
+<h3>F8. Funciones hiperbólicas</h3>
+<table>
+<thead><tr><th>Concepto</th><th>Fórmulas</th></tr></thead>
+<tbody>
+<tr><td>Definición</td><td>$\ch x = \dfrac{e^x+e^{-x}}{2}$, &nbsp; $\sh x = \dfrac{e^x-e^{-x}}{2}$</td></tr>
+<tr><td>Derivadas</td><td>$(\ch x)' = \sh x$, &nbsp; $(\sh x)' = \ch x$</td></tr>
+<tr><td>Relaciones</td><td>$\ch^2x - \sh^2x = 1$; &nbsp; $\ch^2x = \frac{1}{2}(1+\ch 2x)$; &nbsp; $\sh^2x = \frac{1}{2}(\ch 2x - 1)$</td></tr>
+<tr><td>Inversas</td><td>$\argsh x = \ln(x+\sqrt{x^2+1})$; &nbsp; $\argch x = \ln(x+\sqrt{x^2-1})$</td></tr>
+</tbody>
+</table>
+
+<h3>F9. Integral definida</h3>
+<table>
+<thead><tr><th>Resultado</th><th>Fórmula</th></tr></thead>
+<tbody>
+<tr><td>Regla de Barrow ($f$ continua)</td><td>$\int_a^b f(x)\dd x = G(b) - G(a)$, &nbsp; $G' = f$</td></tr>
+<tr><td>Teorema fundamental</td><td>$\dfrac{\mathrm{d}}{\mathrm{d}x}\displaystyle\int_a^{g(x)}f(t)\dd t = f(g(x))\,g'(x)$</td></tr>
+<tr><td>Intervalo</td><td>$\int_a^b = \int_a^c + \int_c^b$; &nbsp; $\int_b^a = -\int_a^b$</td></tr>
+<tr><td>Simetría</td><td>$f$ par: $\int_{-a}^a f = 2\int_0^a f$; &nbsp; $f$ impar: $\int_{-a}^a f = 0$</td></tr>
+<tr><td>Valor medio</td><td>$\int_a^b f(x)\dd x = f(c)(b-a)$ para algún $c\in[a,b]$</td></tr>
+</tbody>
+</table>
+
+<h3>F10. Aplicaciones</h3>
+<table>
+<thead><tr><th>Magnitud</th><th>Cartesianas</th><th>Paramétricas $x = f(t)$, $y = g(t)$</th><th>Polares $\rho = f(\theta)$</th></tr></thead>
+<tbody>
+<tr><td>Área</td><td>$\displaystyle\int_a^b|f(x)-g(x)|\dd x$</td><td>$\left|\displaystyle\int_{t_1}^{t_2}g(t)f'(t)\dd t\right|$</td><td>$\dfrac{1}{2}\displaystyle\int_{\theta_1}^{\theta_2}\rho^2\dd\theta$</td></tr>
+<tr><td>Longitud</td><td>$\displaystyle\int_a^b\sqrt{1+(y')^2}\dd x$</td><td>$\displaystyle\int_{t_1}^{t_2}\sqrt{f'^2+g'^2}\dd t$</td><td>$\displaystyle\int_{\theta_1}^{\theta_2}\sqrt{\rho^2+\rho'^2}\dd\theta$</td></tr>
+<tr><td>Volumen (eje $X$)</td><td>$\pi\displaystyle\int_a^b f(x)^2\dd x$</td><td>$\pi\left|\displaystyle\int_{t_1}^{t_2}g^2 f'\dd t\right|$</td><td>$\dfrac{2\pi}{3}\displaystyle\int_{\theta_1}^{\theta_2}\rho^3\sen\theta\dd\theta$</td></tr>
+<tr><td>Superficie (eje $X$)</td><td>$2\pi\displaystyle\int_a^b |f|\sqrt{1+f'^2}\dd x$</td><td>$2\pi\displaystyle\int_{t_1}^{t_2}|g|\sqrt{f'^2+g'^2}\dd t$</td><td>$2\pi\displaystyle\int_{\theta_1}^{\theta_2}\rho\sen\theta\sqrt{\rho^2+\rho'^2}\dd\theta$</td></tr>
+<tr><td>Volumen (eje $Y$)</td><td>$2\pi\displaystyle\int_a^b x\,f(x)\dd x$ &nbsp; (capas)</td><td colspan="2">o bien $\pi\displaystyle\int_m^n g(y)^2\dd y$ con $x = g(y)$ (discos)</td></tr>
+<tr><td>Superficie (eje $Y$)</td><td>$2\pi\displaystyle\int_m^n g(y)\sqrt{1+g'(y)^2}\dd y$</td><td colspan="2">equivale a $2\pi\displaystyle\int_a^b x\sqrt{1+f'(x)^2}\dd x$</td></tr>
+</tbody>
+</table>
+<p class="peq">Áreas en $\text{u}^2$, longitudes en $\text{u}$, volúmenes en $\text{u}^3$. Entre dos curvas: hallar los puntos de corte y partir la integral donde se crucen. Respecto del eje $Y$: despejar $x = f(y)$ e integrar en $y$ (la curva «más a la derecha» menos la «más a la izquierda»).</p>
+
+<!-- ============================================================ -->
+<h2>Notas sobre los apuntes originales</h2>
+<p>Al revisar los apuntes manuscritos se han corregido estos detalles:</p>
+<ul>
+<li>Arcoseno: $\int\frac{\mathrm{d}x}{\sqrt{1-16x^4}}$ no es inmediata (no tiene primitiva elemental); el ejemplo correcto es $\int\frac{x\dd x}{\sqrt{1-16x^4}} = \frac{1}{8}\arcsen(4x^2) + C$, con la $x$ en el numerador.</li>
+<li>Circunferencia del cambio $x = 3\sen t$: es $y = \pm\sqrt{9-x^2}$, no $\pm\sqrt{9+x^2}$.</li>
+<li>Hiperbólicas: $\sh^2 x = \frac{1}{2}(\ch 2x - 1)$; en los apuntes aparece con el signo cambiado.</li>
+<li>Longitud de arco: el resultado $\frac{38\sqrt{19}-2}{27}$ es una longitud, en $\text{u}$, no en $\text{u}^2$.</li>
+<li>Logaritmos: $\int\tg x\dd x = -\ln|\cos x| + C$ y $\int\frac{u'}{u}\dd x = \ln|u| + C$ llevan valor absoluto.</li>
+<li>Área entre dos curvas «en valor absoluto»: solo es válida si las curvas no se cruzan dentro del intervalo.</li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+
+<!-- ============================================================ -->
+<h2 class="salto">6.4 Integrales racionales</h2>
+
+<p><b>Son integrales de la forma $\displaystyle\int\frac{P(x)}{Q(x)}\dd x$ con $P$ y $Q$ polinomios. Se resuelven siempre siguiendo los mismos pasos: dividir (si hace falta), factorizar el denominador, descomponer en fracciones simples e integrar cada fracción.</b></p>
+
+<div class="def"><b>Fracción propia.</b> $\frac{P(x)}{Q(x)}$ es propia si $\operatorname{grado}P < \operatorname{grado}Q$. La descomposición en fracciones simples solo se puede aplicar a fracciones propias.</div>
+
+<h3>Paso 1. Si $\operatorname{grado}P \geq \operatorname{grado}Q$, se divide</h3>
+<p>Al dividir $P$ entre $Q$ se obtienen un cociente $C(x)$ y un resto $R(x)$ con $\operatorname{grado}R < \operatorname{grado}Q$, de modo que $P = Q\cdot C + R$. Dividiendo entre $Q$:</p>
+$$\int\frac{P(x)}{Q(x)}\dd x = \int C(x)\dd x + \int\frac{R(x)}{Q(x)}\dd x .$$
+<p>La primera integral es un polinomio (inmediata) y la segunda ya es racional propia.</p>
+
+<h3>Paso 2. Se factoriza el denominador</h3>
+<p>Se calculan las raíces de $Q$ (fórmula de segundo grado, Ruffini, sacar factor común…). Todo polinomio con coeficientes reales se puede escribir como producto de factores de dos tipos: <b>lineales</b> $(x-a)$, uno por cada raíz real, y <b>cuadráticos irreducibles</b> $(x^2+px+q)$ con $p^2-4q<0$, uno por cada pareja de raíces complejas conjugadas. Cada factor puede aparecer elevado a una potencia (su multiplicidad).</p>
+
+<h3>Paso 3. Se descompone en fracciones simples</h3>
+<p>Cada factor del denominador aporta unas fracciones concretas:</p>
+<table>
+<thead><tr><th>Factor en $Q(x)$</th><th>Tipo de raíz</th><th>Fracciones que aporta</th></tr></thead>
+<tbody>
+<tr><td>$(x-a)$</td><td>real simple</td><td>$\dfrac{A}{x-a}$</td></tr>
+<tr><td>$(x-a)^n$</td><td>real múltiple (orden $n$)</td><td>$\dfrac{A_1}{x-a}+\dfrac{A_2}{(x-a)^2}+\dots+\dfrac{A_n}{(x-a)^n}$</td></tr>
+<tr><td>$(x^2+px+q)$</td><td>compleja simple</td><td>$\dfrac{Mx+N}{x^2+px+q}$</td></tr>
+<tr><td>$(x^2+px+q)^n$</td><td>compleja múltiple</td><td>método de Hermite (apartado d)</td></tr>
+</tbody>
+</table>
+<p><b>Cálculo de los coeficientes.</b> Se iguala la fracción a la suma de fracciones simples, se multiplica todo por $Q(x)$ y queda una igualdad entre polinomios que debe cumplirse para <i>todo</i> $x$. Hay dos técnicas, que se pueden combinar:</p>
+<ul>
+<li><b>Dar valores a $x$</b>: sobre todo las raíces reales, porque anulan casi todos los términos y dan un coeficiente directamente. Si faltan ecuaciones, se dan otros valores sencillos ($x=0$, $x=2$…).</li>
+<li><b>Igualar coeficientes</b>: dos polinomios son iguales si y solo si tienen los mismos coeficientes en cada potencia de $x$.</li>
+</ul>
+
+<h3>Paso 4. Se integra cada fracción</h3>
+<table>
+<thead><tr><th>Fracción</th><th>Integral</th><th>Da</th></tr></thead>
+<tbody>
+<tr><td>$\dfrac{A}{x-a}$</td><td>$A\ln|x-a|$</td><td>logaritmo</td></tr>
+<tr><td>$\dfrac{A}{(x-a)^k}$, $k\geq 2$</td><td>$\dfrac{-A}{(k-1)(x-a)^{k-1}}$</td><td>potencia</td></tr>
+<tr><td>$\dfrac{Mx+N}{x^2+px+q}$</td><td>logaritmo + arcotangente</td><td>ver apartado c)</td></tr>
+</tbody>
+</table>
+
+<h3>a) Raíces reales simples</h3>
+<p>Las raíces son reales y distintas entre sí. <b>Las raíces simples siempre dan logaritmos.</b></p>
+<div class="ej"><span class="t">Ejemplo. $\displaystyle\int\frac{x^3+x^2+x+2}{x^2-3x+2}\dd x$</span>
+<p><i>Paso 1.</i> $\operatorname{grado}P = 3 \geq 2 = \operatorname{grado}Q$, así que se divide: cociente $C(x) = x+4$, resto $R(x) = 11x-6$. (Comprobación: $(x^2-3x+2)(x+4) + 11x - 6 = x^3+x^2+x+2$.)</p>
+$$\int\frac{x^3+x^2+x+2}{x^2-3x+2}\dd x = \int(x+4)\dd x + \int\frac{11x-6}{x^2-3x+2}\dd x = \frac{x^2}{2} + 4x + \int\frac{11x-6}{x^2-3x+2}\dd x .$$
+<p><i>Paso 2.</i> $x^2-3x+2 = 0 \Rightarrow x = 1,\ x = 2$, luego $x^2-3x+2 = (x-1)(x-2)$: dos raíces reales simples.</p>
+<p><i>Paso 3.</i></p>
+$$\frac{11x-6}{(x-2)(x-1)} = \frac{A}{x-2} + \frac{B}{x-1} \;\Longrightarrow\; 11x-6 = A(x-1) + B(x-2).$$
+<p>Si $x=1$: $5 = -B$, luego $B = -5$. &nbsp; Si $x=2$: $16 = A$.</p>
+<p><i>Paso 4.</i></p>
+$$\int\frac{11x-6}{x^2-3x+2}\dd x = 16\int\frac{\mathrm{d}x}{x-2} - 5\int\frac{\mathrm{d}x}{x-1} = 16\ln|x-2| - 5\ln|x-1| .$$
+<p><i>Resultado.</i></p>
+$$\int\frac{x^3+x^2+x+2}{x^2-3x+2}\dd x = \frac{x^2}{2} + 4x + 16\ln|x-2| - 5\ln|x-1| + C .$$
+</div>
+
+<h3>b) Raíces reales múltiples</h3>
+<p>Si una raíz $a$ se repite $n$ veces, hay que poner $n$ fracciones, con denominadores $(x-a), (x-a)^2, \dots, (x-a)^n$. <b>Las raíces múltiples dan potencias</b> (además del logaritmo de la primera fracción).</p>
+<div class="ej"><span class="t">Ejemplo. $\displaystyle\int\frac{x+1}{x^2-6x+9}\dd x$</span>
+<p>Es propia. $x^2-6x+9 = (x-3)^2$: raíz real doble $x = 3$.</p>
+$$\frac{x+1}{(x-3)^2} = \frac{A}{x-3} + \frac{B}{(x-3)^2} \;\Longrightarrow\; x+1 = A(x-3) + B .$$
+<p>Si $x=3$: $B = 4$. &nbsp; Si $x=0$: $1 = -3A + 4$, luego $A = 1$.</p>
+$$\int\frac{x+1}{x^2-6x+9}\dd x = \int\frac{\mathrm{d}x}{x-3} + 4\int(x-3)^{-2}\dd x = \ln|x-3| + 4\frac{(x-3)^{-1}}{-1} + C = \ln|x-3| - \frac{4}{x-3} + C .$$
+</div>
+
+<h3>c) Raíces complejas simples</h3>
+<p>El denominador tiene un factor $x^2+px+q$ sin raíces reales ($p^2-4q<0$). <b>Pueden dar un logaritmo, una arcotangente o una suma de ambos.</b> Hay tres casos:</p>
+<div class="ej"><span class="t">c.1) Numerador constante: arcotangente</span>
+<p>$1+x^2 = 0 \Rightarrow x = \pm\sqrt{-1}$, complejas. $\displaystyle\int\frac{\mathrm{d}x}{1+x^2} = \arctg x + C$.</p>
+</div>
+<div class="ej"><span class="t">c.2) Numerador proporcional a la derivada del denominador: logaritmo</span>
+<p>$\displaystyle\int\frac{x\dd x}{1+x^2} = \frac{1}{2}\int\frac{2x\dd x}{1+x^2} = \frac{1}{2}\ln(1+x^2) + C$ (no hace falta valor absoluto: $1+x^2>0$).</p>
+</div>
+<div class="ej"><span class="t">c.3) Caso general: logaritmo + arcotangente</span>
+<p>Se hace en dos pasos. <b>1.º Conseguir el logaritmo:</b> se ajusta el numerador para que aparezca la derivada del denominador, y lo que sobra es una constante. <b>2.º Buscar la arcotangente:</b> con la constante que sobra, se completa el cuadrado en el denominador («método de los cuadrados perfectos»).</p>
+<p>Caso sencillo: $\displaystyle\int\frac{x+3}{1+x^2}\dd x = \frac{1}{2}\int\frac{2x}{1+x^2}\dd x + 3\int\frac{\mathrm{d}x}{1+x^2} = \frac{1}{2}\ln(1+x^2) + 3\arctg x + C$.</p>
+</div>
+
+<div class="ej"><span class="t">Ejemplo completo. $\displaystyle\int\frac{x+3}{x^2+2x+10}\dd x$</span>
+<p>Raíces del denominador: $x = \frac{-2\pm\sqrt{4-40}}{2}$, complejas. La derivada del denominador es $2x+2$.</p>
+<p><i>1.º Logaritmo.</i> Multiplico y divido por $2$ y escribo $2x+6 = (2x+2) + 4$:</p>
+$$\int\frac{x+3}{x^2+2x+10}\dd x = \frac{1}{2}\int\frac{2x+6}{x^2+2x+10}\dd x = \frac{1}{2}\int\frac{2x+2}{x^2+2x+10}\dd x + \frac{1}{2}\int\frac{4\dd x}{x^2+2x+10}$$
+$$= \frac{1}{2}\ln(x^2+2x+10) + 2\int\frac{\mathrm{d}x}{x^2+2x+10} .$$
+<p><i>2.º Arcotangente.</i> Completo el cuadrado: $x^2+2x+10 = (x+1)^2 - 1 + 10 = (x+1)^2 + 9$. Saco el $9$ factor común:</p>
+$$\int\frac{\mathrm{d}x}{(x+1)^2+9} = \frac{1}{9}\int\frac{\mathrm{d}x}{1+\left(\frac{x+1}{3}\right)^2} = \frac{1}{9}\cdot 3\int\frac{\frac{1}{3}\dd x}{1+\left(\frac{x+1}{3}\right)^2} = \frac{1}{3}\arctg\frac{x+1}{3} .$$
+<p><i>Resultado.</i></p>
+$$\int\frac{x+3}{x^2+2x+10}\dd x = \frac{1}{2}\ln(x^2+2x+10) + \frac{2}{3}\arctg\frac{x+1}{3} + C .$$
+</div>
+
+<p><b>Completar el cuadrado (regla general).</b> $x^2+px+q = \left(x+\frac{p}{2}\right)^2 + \left(q-\frac{p^2}{4}\right)$, y como $p^2-4q<0$, el número $k^2 = q - \frac{p^2}{4}$ es positivo. Entonces $\int\frac{\mathrm{d}x}{(x+\frac{p}{2})^2+k^2} = \frac{1}{k}\arctg\frac{x+p/2}{k}$.</p>
+
+<p><b>Fórmula general</b> (para comprobar):</p>
+$$\int\frac{Mx+N}{x^2+px+q}\dd x = \frac{M}{2}\ln(x^2+px+q) + \frac{2N-Mp}{\sqrt{4q-p^2}}\arctg\frac{2x+p}{\sqrt{4q-p^2}} + C \qquad (p^2-4q<0).$$
+<p>En el ejemplo: $M=1$, $N=3$, $p=2$, $q=10$, $\sqrt{4q-p^2} = 6$, y sale $\frac{1}{2}\ln(\dots) + \frac{4}{6}\arctg\frac{2x+2}{6}$, lo mismo.</p>
+
+<h3>d) Raíces complejas múltiples: método de Hermite</h3>
+<p><b>Cuando el denominador tiene factores cuadráticos irreducibles repetidos, $(x^2+px+q)^n$ con $n\geq 2$, la descomposición ordinaria lleva a integrales del tipo $\int\frac{\mathrm{d}x}{(x^2+px+q)^n}$, que son largas. El método de Hermite evita esas integrales separando la parte racional del resultado.</b> En los apuntes se indica que «no suelen entrar», pero conviene saber hacerlo.</p>
+
+<p><b>Enunciado.</b> Sea $\frac{P(x)}{Q(x)}$ propia. Se definen:</p>
+<ul>
+<li>$D(x)$: el polinomio $Q(x)$ con <b>cada factor elevado a una unidad menos</b> (los factores que estaban elevados a $1$ desaparecen). Es el máximo común divisor de $Q$ y $Q'$.</li>
+<li>$Q^*(x) = \dfrac{Q(x)}{D(x)}$: el producto de <b>todos los factores distintos de $Q$, cada uno elevado a $1$</b>.</li>
+</ul>
+<p>Entonces existe un polinomio $N(x)$ con $\operatorname{grado}N < \operatorname{grado}D$ tal que</p>
+$$\int\frac{P(x)}{Q(x)}\dd x = \frac{N(x)}{D(x)} + \int\frac{R(x)}{Q^*(x)}\dd x ,$$
+<p>donde $\frac{R(x)}{Q^*(x)}$ se descompone en fracciones simples <b>con todas las raíces simples</b> (solo da logaritmos y arcotangentes).</p>
+
+<p><b>Cómo se calculan los coeficientes.</b> $N(x)$ se escribe con coeficientes indeterminados ($ax+b$, $ax^2+bx+c$…) y $\frac{R}{Q^*}$ como suma de fracciones simples con coeficientes indeterminados. Se <b>deriva</b> la igualdad anterior:</p>
+$$\frac{P(x)}{Q(x)} = \frac{\mathrm{d}}{\mathrm{d}x}\left[\frac{N(x)}{D(x)}\right] + \frac{R(x)}{Q^*(x)} ,$$
+<p>se multiplica todo por $Q(x)$ y se igualan coeficientes (o se dan valores a $x$).</p>
+
+<div class="ej"><span class="t">Ejemplo 1. $\displaystyle\int\frac{\mathrm{d}x}{(x^2+1)^2}$</span>
+<p><i>Factores.</i> $Q = (x^2+1)^2$, factor complejo doble. Bajando un grado: $D = x^2+1$. Factores distintos: $Q^* = x^2+1$.</p>
+<p><i>Planteamiento.</i> $\operatorname{grado}D = 2$, así que $N = ax+b$. Y $\frac{R}{Q^*} = \frac{cx+d}{x^2+1}$:</p>
+$$\int\frac{\mathrm{d}x}{(x^2+1)^2} = \frac{ax+b}{x^2+1} + \int\frac{cx+d}{x^2+1}\dd x .$$
+<p><i>Derivo.</i> $\displaystyle\left(\frac{ax+b}{x^2+1}\right)' = \frac{a(x^2+1) - (ax+b)\,2x}{(x^2+1)^2} = \frac{-ax^2 - 2bx + a}{(x^2+1)^2}$, luego</p>
+$$\frac{1}{(x^2+1)^2} = \frac{-ax^2-2bx+a}{(x^2+1)^2} + \frac{cx+d}{x^2+1} .$$
+<p><i>Multiplico por $(x^2+1)^2$ y ordeno:</i></p>
+$$1 = -ax^2 - 2bx + a + (cx+d)(x^2+1) = c\,x^3 + (d-a)\,x^2 + (c-2b)\,x + (a+d) .$$
+<p><i>Igualo coeficientes:</i> $x^3$: $c = 0$; &nbsp; $x^2$: $d - a = 0$; &nbsp; $x$: $c - 2b = 0 \Rightarrow b = 0$; &nbsp; término independiente: $a + d = 1$. Por tanto $a = d = \frac{1}{2}$, $b = c = 0$.</p>
+<p><i>Resultado.</i></p>
+$$\int\frac{\mathrm{d}x}{(x^2+1)^2} = \frac{x}{2(x^2+1)} + \frac{1}{2}\int\frac{\mathrm{d}x}{x^2+1} = \frac{x}{2(x^2+1)} + \frac{1}{2}\arctg x + C .$$
+<p><i>Comprobación.</i> Derivando: $\frac{1}{2}\cdot\frac{1-x^2}{(x^2+1)^2} + \frac{1}{2}\cdot\frac{1}{x^2+1} = \frac{1-x^2+x^2+1}{2(x^2+1)^2} = \frac{1}{(x^2+1)^2}$.</p>
+</div>
+
+<div class="ej"><span class="t">Ejemplo 2 (mezcla de raíces). $\displaystyle\int\frac{\mathrm{d}x}{(x-1)(x^2+1)^2}$</span>
+<p><i>Factores.</i> $(x-1)$ real simple y $(x^2+1)^2$ compleja doble. Bajando un grado cada factor: $(x-1)^0 = 1$ y $(x^2+1)^1$, así que $D = x^2+1$ y $Q^* = (x-1)(x^2+1)$.</p>
+<p><i>Planteamiento.</i></p>
+$$\int\frac{\mathrm{d}x}{(x-1)(x^2+1)^2} = \frac{ax+b}{x^2+1} + \int\left(\frac{A}{x-1} + \frac{Mx+N}{x^2+1}\right)\mathrm{d}x .$$
+<p><i>Derivo y multiplico por $Q = (x-1)(x^2+1)^2$</i> (la derivada de $\frac{ax+b}{x^2+1}$ es la del ejemplo 1):</p>
+$$1 = (x-1)(-ax^2-2bx+a) + A(x^2+1)^2 + (Mx+N)(x-1)(x^2+1) .$$
+<p><i>Valor útil.</i> Si $x = 1$: $1 = 4A$, luego $A = \frac{1}{4}$.</p>
+<p><i>Igualo coeficientes</i> (desarrollando los productos):</p>
+<table>
+<thead><tr><th>Potencia</th><th>Ecuación</th></tr></thead>
+<tbody>
+<tr><td>$x^4$</td><td>$A + M = 0 \;\Rightarrow\; M = -\frac{1}{4}$</td></tr>
+<tr><td>$x^3$</td><td>$-a + N - M = 0$</td></tr>
+<tr><td>$x^2$</td><td>$a - 2b + 2A + M - N = 0$</td></tr>
+<tr><td>$x^1$</td><td>$a + 2b + N - M = 0$</td></tr>
+<tr><td>$x^0$</td><td>$-a + A - N = 1$</td></tr>
+</tbody>
+</table>
+<p>De $x^3$: $a = N + \frac{1}{4}$. Sustituyendo en $x^0$: $-N - \frac{1}{4} + \frac{1}{4} - N = 1$, luego $N = -\frac{1}{2}$ y $a = -\frac{1}{4}$. De $x^1$: $-\frac{1}{4} + 2b - \frac{1}{2} + \frac{1}{4} = 0$, luego $b = \frac{1}{4}$. (La ecuación de $x^2$ se cumple y sirve de comprobación.)</p>
+<p><i>Integro lo que queda.</i> $\displaystyle\int\frac{-\frac{1}{4}x - \frac{1}{2}}{x^2+1}\dd x = -\frac{1}{8}\ln(x^2+1) - \frac{1}{2}\arctg x$.</p>
+<p><i>Resultado.</i></p>
+$$\int\frac{\mathrm{d}x}{(x-1)(x^2+1)^2} = \frac{1-x}{4(x^2+1)} + \frac{1}{4}\ln|x-1| - \frac{1}{8}\ln(x^2+1) - \frac{1}{2}\arctg x + C .$$
+</div>
+
+<p><b>Hermite también vale para raíces reales múltiples.</b> Por ejemplo, en $\int\frac{x+1}{(x-3)^2}\dd x$: $D = x-3$, $Q^* = x-3$, y se plantea $\frac{x+1}{(x-3)^2} = \left(\frac{a}{x-3}\right)' + \frac{A}{x-3} = \frac{-a}{(x-3)^2} + \frac{A}{x-3}$. Multiplicando: $x+1 = -a + A(x-3)$, de donde $A = 1$, $a = -4$, y se obtiene $\ln|x-3| - \frac{4}{x-3}$, igual que en el apartado b).</p>
+
+<div class="nota"><b>Alternativa: fórmula de reducción.</b> Si se prefiere no usar Hermite, las integrales $I_k = \int\frac{\mathrm{d}x}{(1+x^2)^k}$ cumplen
+$$I_{k+1} = \frac{x}{2k\,(1+x^2)^k} + \frac{2k-1}{2k}\,I_k, \qquad I_1 = \arctg x .$$
+Con $k=1$ se recupera el ejemplo 1. Un factor $(x^2+px+q)^k$ se lleva a esta forma completando el cuadrado y haciendo un cambio lineal.</div>
+
+<h3>e) Mezcla de los casos anteriores</h3>
+<div class="ej"><span class="t">Ejemplo. $\displaystyle\int\frac{x^2+1}{x^4-x^2}\dd x$</span>
+<p>Es propia. $x^4 - x^2 = x^2(x^2-1) = x^2(x-1)(x+1)$: raíz real doble $x = 0$ y raíces reales simples $x = 1$, $x = -1$.</p>
+$$\frac{x^2+1}{x^4-x^2} = \frac{A}{x-1} + \frac{B}{x+1} + \frac{C}{x} + \frac{D}{x^2}$$
+$$x^2+1 = A(x+1)x^2 + B(x-1)x^2 + C\,x(x+1)(x-1) + D(x-1)(x+1) .$$
+<p>Si $x=0$: $1 = -D$, $D = -1$. &nbsp; Si $x=1$: $2 = 2A$, $A = 1$. &nbsp; Si $x=-1$: $2 = -2B$, $B = -1$. &nbsp; Si $x=2$: $5 = 12A + 4B + 6C + 3D$, es decir $5 = 12 - 4 + 6C - 3$, luego $C = 0$.</p>
+$$\int\frac{x^2+1}{x^4-x^2}\dd x = \int\frac{\mathrm{d}x}{x-1} - \int\frac{\mathrm{d}x}{x+1} - \int x^{-2}\dd x = \ln|x-1| - \ln|x+1| + \frac{1}{x} + C .$$
+</div>
+
+<div class="nota"><b>Errores típicos.</b> (1) Descomponer sin haber dividido cuando $\operatorname{grado}P\geq\operatorname{grado}Q$. (2) Poner una sola fracción para una raíz doble. (3) Poner solo una constante $N$ (en vez de $Mx+N$) encima de un factor cuadrático. (4) Olvidar que $x^2-1$ no es irreducible: se factoriza como $(x-1)(x+1)$.</div>
+
+<!-- ============================================================ -->
+<h2 class="salto">6.5 Integración por cambio de variable</h2>
+
+<p><b>Se sustituye una parte del integrando por una nueva variable $t$ para transformar la integral en otra más sencilla (normalmente inmediata o racional). Se usa en integrales irracionales (con raíces), con exponenciales que no son inmediatas, con logaritmos, trigonométricas, etc.</b></p>
+
+<div class="def"><b>Teorema del cambio de variable.</b> Si $x = g(t)$, con $g$ derivable, de derivada continua e invertible, entonces
+$$\int f(x)\dd x = \int f\big(g(t)\big)\,g'(t)\dd t ,$$
+y al terminar se deshace el cambio con $t = g^{-1}(x)$. Dicho de forma práctica: al cambiar la variable hay que cambiar <b>también el $\mathrm{d}x$</b>, usando $\mathrm{d}x = g'(t)\dd t$.</div>
+
+<p><b>Procedimiento.</b> (1) Elegir el cambio. (2) Derivar para relacionar $\mathrm{d}x$ y $\mathrm{d}t$. (3) Sustituir <b>todo</b>: no puede quedar ninguna $x$. (4) Integrar en $t$. (5) Deshacer el cambio.</p>
+<p>Las integrales inmediatas con $u$ son, en el fondo, cambios de variable hechos «de cabeza» ($t = u(x)$, $\mathrm{d}t = u'\dd x$).</p>
+
+<h3>Cambios más habituales</h3>
+<table>
+<thead><tr><th>Si aparece…</th><th>Cambio</th><th>Se obtiene</th></tr></thead>
+<tbody>
+<tr><td>raíces de $x$ con índices $n_1,\dots,n_k$</td><td>$x = t^m$, $m = \operatorname{mcm}(n_1,\dots,n_k)$</td><td>racional en $t$</td></tr>
+<tr><td>raíces de $ax+b$</td><td>$ax+b = t^m$</td><td>racional en $t$</td></tr>
+<tr><td>$e^x$ (no inmediata)</td><td>$t = e^x$, &nbsp; $\mathrm{d}x = \frac{\mathrm{d}t}{t}$</td><td>racional en $t$</td></tr>
+<tr><td>$\ln x$ y $\frac{1}{x}$</td><td>$t = \ln x$, &nbsp; $\mathrm{d}t = \frac{\mathrm{d}x}{x}$</td><td>más sencilla</td></tr>
+<tr><td>$\sqrt{a^2-x^2}$</td><td>$x = a\sen t$, &nbsp; $\mathrm{d}x = a\cos t\dd t$</td><td>$\sqrt{a^2-x^2} = a\cos t$</td></tr>
+<tr><td>$\sqrt{a^2+x^2}$</td><td>$x = a\tg t$ &nbsp; (o $x = a\sh t$)</td><td>$\sqrt{a^2+x^2} = \frac{a}{\cos t}$ &nbsp; (o $a\ch t$)</td></tr>
+<tr><td>$\sqrt{x^2-a^2}$</td><td>$x = \frac{a}{\cos t}$ &nbsp; (o $x = a\ch t$)</td><td>$\sqrt{x^2-a^2} = a\tg t$ &nbsp; (o $a\sh t$)</td></tr>
+<tr><td>$R(\sen x,\cos x)$</td><td>ver 6.6</td><td>racional en $t$</td></tr>
+</tbody>
+</table>
+
+<div class="ej"><span class="t">Ejemplo 1 (raíces de distinto índice). $\displaystyle\int\frac{\sqrt{x}-\sqrt[3]{x}}{\sqrt[6]{x}}\dd x$</span>
+<p>Índices $2, 3, 6$: $\operatorname{mcm}(2,3,6) = 12$. Cambio $x = t^{12}$, $\mathrm{d}x = 12t^{11}\dd t$. Así todas las raíces son exactas: $\sqrt{x} = t^6$, $\sqrt[3]{x} = t^4$, $\sqrt[6]{x} = t^2$.</p>
+$$\int\frac{t^6-t^4}{t^2}\cdot 12t^{11}\dd t = \int(t^4-t^2)\,12t^{11}\dd t = \int(12t^{15} - 12t^{13})\dd t = \frac{12t^{16}}{16} - \frac{12t^{14}}{14} + C = \frac{3t^{16}}{4} - \frac{6t^{14}}{7} + C .$$
+<p>Deshago el cambio, $t = \sqrt[12]{x}$, es decir $t^{16} = x^{16/12} = x^{4/3}$ y $t^{14} = x^{7/6}$:</p>
+$$\int\frac{\sqrt{x}-\sqrt[3]{x}}{\sqrt[6]{x}}\dd x = \frac{3}{4}\sqrt[3]{x^4} - \frac{6}{7}\sqrt[6]{x^7} + C .$$
+<p>(En este caso concreto también se podía simplificar antes: $\frac{x^{1/2}-x^{1/3}}{x^{1/6}} = x^{1/3} - x^{1/6}$, que es inmediata. El cambio es el método general.)</p>
+</div>
+
+<div class="ej"><span class="t">Ejemplo 2 (exponenciales). $\displaystyle\int\frac{\mathrm{d}x}{e^x+e^{-x}}$</span>
+<p>Cambio $t = e^x$: $e^{-x} = \frac{1}{t}$ y $\mathrm{d}t = e^x\dd x$, luego $\mathrm{d}x = \frac{\mathrm{d}t}{t}$.</p>
+$$\int\frac{\mathrm{d}t/t}{t+\frac{1}{t}} = \int\frac{\mathrm{d}t/t}{\frac{t^2+1}{t}} = \int\frac{\mathrm{d}t}{t^2+1} = \arctg t + C = \arctg(e^x) + C .$$
+</div>
+
+<div class="ej"><span class="t">Ejemplo 3 (trigonométrico, $\sqrt{a^2-x^2}$). $\displaystyle\int\sqrt{9-x^2}\dd x$</span>
+<p>La curva $y = \sqrt{9-x^2}$ es la semicircunferencia superior de $x^2+y^2 = 9$ (radio $3$). Cambio $x = 3\sen t$, $\mathrm{d}x = 3\cos t\dd t$, con $t\in\left[-\frac{\pi}{2},\frac{\pi}{2}\right]$ para que $\cos t\geq 0$:</p>
+$$\int\sqrt{9-9\sen^2 t}\cdot 3\cos t\dd t = \int\sqrt{9\cos^2 t}\cdot 3\cos t\dd t = 9\int\cos^2 t\dd t .$$
+<p>Por la fórmula de reducción $\cos^2 t = \frac{1}{2}(1+\cos 2t)$ (ver 6.7):</p>
+$$9\int\frac{1}{2}(1+\cos 2t)\dd t = \frac{9}{2}\left[t + \frac{\sen 2t}{2}\right] + C .$$
+<p>Deshago el cambio: $t = \arcsen\frac{x}{3}$. Para simplificar $\frac{\sen 2t}{2} = \sen t\cos t$ uso $\sen t = \frac{x}{3}$ y $\cos t = \sqrt{1-\sen^2 t} = \frac{\sqrt{9-x^2}}{3}$:</p>
+$$\int\sqrt{9-x^2}\dd x = \frac{9}{2}\arcsen\frac{x}{3} + \frac{x\sqrt{9-x^2}}{2} + C .$$
+<p>En general: $\displaystyle\int\sqrt{a^2-x^2}\dd x = \frac{a^2}{2}\arcsen\frac{x}{a} + \frac{x\sqrt{a^2-x^2}}{2} + C$.</p>
+</div>
+
+<div class="ej"><span class="t">Ejemplo 4 (trigonométrico, $\sqrt{a^2+x^2}$). $\displaystyle\int\frac{\mathrm{d}x}{(x^2+4)^{3/2}}$</span>
+<p>Cambio $x = 2\tg t$, $\mathrm{d}x = \frac{2}{\cos^2 t}\dd t$. Como $1+\tg^2 t = \frac{1}{\cos^2 t}$: $x^2+4 = \frac{4}{\cos^2 t}$ y $(x^2+4)^{3/2} = \frac{8}{\cos^3 t}$.</p>
+$$\int\frac{2/\cos^2 t}{8/\cos^3 t}\dd t = \frac{1}{4}\int\cos t\dd t = \frac{1}{4}\sen t + C .$$
+<p>Deshago el cambio: si $\tg t = \frac{x}{2}$, en un triángulo rectángulo de catetos $x$ y $2$ la hipotenusa es $\sqrt{x^2+4}$, luego $\sen t = \frac{x}{\sqrt{x^2+4}}$:</p>
+$$\int\frac{\mathrm{d}x}{(x^2+4)^{3/2}} = \frac{x}{4\sqrt{x^2+4}} + C .$$
+</div>
+
+<h3>Cambio de variable en integrales definidas</h3>
+<p>Si la integral es definida, se pueden <b>cambiar también los límites de integración</b> y así no hace falta deshacer el cambio:</p>
+$$\int_a^b f(x)\dd x = \int_{\alpha}^{\beta} f\big(g(t)\big)\,g'(t)\dd t, \qquad g(\alpha) = a,\ g(\beta) = b .$$
+<div class="ej"><span class="t">Ejemplo. $\displaystyle\int_0^3\sqrt{9-x^2}\dd x$</span>
+<p>Con $x = 3\sen t$: si $x = 0$, $t = 0$; si $x = 3$, $t = \frac{\pi}{2}$.</p>
+$$\int_0^{\pi/2} 9\cos^2 t\dd t = \frac{9}{2}\left[t + \frac{\sen 2t}{2}\right]_0^{\pi/2} = \frac{9}{2}\cdot\frac{\pi}{2} = \frac{9\pi}{4} .$$
+<p>Comprobación geométrica: es un cuarto del círculo de radio $3$, cuya área es $\frac{\pi\cdot 3^2}{4} = \frac{9\pi}{4}$.</p>
+</div>
